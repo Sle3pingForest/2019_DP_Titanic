@@ -1,4 +1,4 @@
-package player;
+package modele.player;
 
 public abstract class Player {
 
