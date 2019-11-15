@@ -6,11 +6,12 @@ public class Plateau {
 	protected int[][] grillPlayer ;
 	protected int[][] grillOpponent;
 	protected ArrayList<Boat> listeBoat;
-	
+	public static final int  X = 11;
+	public static final int  Y = 11;
 	
 	public Plateau(String epoch) {
-		this.grillPlayer = new int[11][11];
-		this.grillOpponent = new int[11][11];
+		this.grillPlayer = new int[X][Y];
+		this.grillOpponent = new int[X][Y];
 		settingBoat(epoch);
 		
 	}
@@ -69,6 +70,51 @@ public class Plateau {
 	public void setListeBoat(ArrayList<Boat> listeBoat) {
 		this.listeBoat = listeBoat;
 	}
-
+	
+	public void initializerPlateau() {
+	  int i ,j;
+	  for(i=0; i<X; i++) {
+		  for(j=0; j<Y; j++) {
+		  grillPlayer[i][j]=-1;//Empty
+		  grillOpponent[i][j]=-1;
+	  }
+	  }
+		
+	}
+    public boolean IsEmpty(int[][] grille,int x , int y) { 	 
+    	return grille[x][y]==-1;//true if is Empty
+    }
+    
+    public boolean BoatPositionEmpty(int[][] grille,int x , int y,Boat boat) {
+    	boolean empty=true;
+    	if(boat.isHorizontal()) {
+    		if(IsEmpty(grille,x,y)){
+    			int i = x+1 ;
+    			while(i <= boat.getSize() && empty==true) {
+    			  if(IsEmpty(grille,i,y))
+    				 i++;
+    			  else 
+    				  empty= false;
+    			
+    			}
+    				
+    		}
+    	}
+    	if(!boat.isHorizontal()) {
+    		if(IsEmpty(grille,x,y)){
+    			int i = y+1 ;
+    			while(i <= boat.getSize() && empty==true) {
+    			  if(IsEmpty(grille,x,i))
+    				 i++;
+    			  else 
+    				  empty= false;
+    			
+    			}
+    				
+    		}
+    	}
+    		
+    	return empty;
+    }
 	
 }

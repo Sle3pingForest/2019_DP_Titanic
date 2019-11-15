@@ -32,7 +32,7 @@ public abstract class Boat {
 	}
 
 	public int getSize() {
-		return size;
+		return this.size;
 	}
 
 	public void setSize(int size) {

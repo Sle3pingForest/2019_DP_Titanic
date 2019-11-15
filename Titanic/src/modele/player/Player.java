@@ -50,7 +50,7 @@ public abstract class Player {
 		}
 	    
 		public void placeBoats(Plateau p , Collection<Boat>boats) {
-			//complete...
+			//complete...nam
 		}
 		
 }
