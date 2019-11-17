@@ -8,7 +8,7 @@ public abstract class AbstractEpoqueFactory {
 	public AbstractEpoqueFactory(){
 	}
 	
-	public abstract Boat buildShip(int x, int y, int size, boolean horizontal);
+	public abstract Boat buildShip(String name,int x, int y, int size, boolean horizontal);
 	public abstract String nameEpoch();
 
 	

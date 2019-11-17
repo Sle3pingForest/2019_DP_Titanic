@@ -4,14 +4,15 @@ public abstract class Boat {
 	
 	protected int posX, posY, size, hp;
 	protected boolean horizontal, dead;
-	
+	protected String name;
 	
 	// horizontal = true, else vertical
-	public Boat(int x, int y, int size, boolean horizontal) {
+	public Boat(String name,int x, int y, int size, boolean horizontal) {
 		this.posX = x;
 		this.posY = y;
 		this.size = size;
 		this.horizontal = horizontal;
+		this.name = name;
 		dead = false;
 	}
 
@@ -61,6 +62,14 @@ public abstract class Boat {
 
 	public void setDead(boolean dead) {
 		this.dead = dead;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
