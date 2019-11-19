@@ -23,12 +23,12 @@ public class Modele {
 		return p1;
 	}
 
-	public void setP1(Player p1) {
-		this.p1 = p1;
-	}
-
 	public Player getP2() {
 		return p2;
+	}
+
+	public void setP1(Player p1) {
+		this.p1 = p1;
 	}
 
 	public void setP2(Player p2) {

@@ -11,9 +11,9 @@ import modele.player.Player;
 
 public class Case extends JButton{
 	
-	private int x, y;
 	public static int size = 50;
 	public Color color = Color.white;
+	private int x, y;
 	
 	
 	public Case(int x,int y){
@@ -33,29 +33,29 @@ public class Case extends JButton{
 		setPreferredSize(new Dimension(size, size));
 	}
 
-	public int getX() {
-		return x;
+	public Color getColor() {
+		return color;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public int getX() {
+		return x;
 	}
 
 	public int getY() {
 		return y;
 	}
 
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
 	public void setColor(Color color) {
 		this.color = color;
 
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 
