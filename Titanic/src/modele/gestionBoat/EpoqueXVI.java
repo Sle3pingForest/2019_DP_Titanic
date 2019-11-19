@@ -3,9 +3,9 @@ package modele.gestionBoat;
 public class EpoqueXVI extends AbstractEpoqueFactory {
 
 	@Override
-	public Boat buildShip(String name,int x, int y, int size, boolean horizontal) {
+	public Boat buildShip(String name,int id,int x, int y, int size, boolean horizontal) {
 		
-		return new BoatXVI( name,x, y, size, horizontal) ;
+		return new BoatXVI( name,id,x, y, size, horizontal) ;
 	}
 
 	@Override

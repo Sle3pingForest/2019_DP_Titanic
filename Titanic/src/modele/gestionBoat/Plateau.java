@@ -11,6 +11,7 @@ public class Plateau {
 	public static final int  HIGHT = 11;
 	public static final String XVI ="XVI";
 	public static final String XX = "XX";
+	private String epoch;
 
 	public Plateau(String epoch) {
 		this.grillPlayer = new int[WIDTH][HIGHT];
@@ -18,24 +19,26 @@ public class Plateau {
 		initializerPlateau();
 		this.listeBoatPlayer = new ArrayList<Boat>();
 		settingBoat(epoch);
+		this.epoch = epoch;
 
 	}
 	//function who bluid 5 boat at position 0 0
 	public void settingBoat(String epoch) {
 		Boat portAvion,  croiseur, sousMarins,  sousMarins2,  torpilleur;
+		this.epoch = epoch;
 		if(epoch.compareTo(XVI) == 0) {
-			portAvion = new BoatXVI("Porte Avion",0, 0, 5, true);
-			croiseur = new BoatXVI("Croiseur", 0,0, 4, true);
-			sousMarins2 = new BoatXVI("Sous Marins 2",0, 0, 3, true);
-			sousMarins = new BoatXVI("Sous Marins",0, 0, 3, true);
-			torpilleur = new BoatXVI("Torpilleur",0,0,2,true);
+			portAvion = new BoatXVI("Porte Avion",0,0, 0, 5, true);
+			croiseur = new BoatXVI("Croiseur", 1,0,0, 4, true);
+			sousMarins2 = new BoatXVI("Sous Marins 2",2,0, 0, 3, true);
+			sousMarins = new BoatXVI("Sous Marins",3,0, 0, 3, true);
+			torpilleur = new BoatXVI("Torpilleur",4,0,0,2,true);
 		}
 		else {
-			portAvion = new BoatXX("Porte Avion",0, 0, 5, true);
-			croiseur = new BoatXX("Croiseur", 0,0, 4, true);
-			sousMarins2 = new BoatXX("Sous Marins 2",0, 0, 3, true);
-			sousMarins = new BoatXX("Sous Marins",0, 0, 3, true);
-			torpilleur = new BoatXX("Torpilleur",0,0,2,true);
+			portAvion = new BoatXX("Porte Avion",0,0, 0, 5, true);
+			croiseur = new BoatXX("Croiseur", 1,0,0, 4, true);
+			sousMarins2 = new BoatXX("Sous Marins 2",2,0, 0, 3, true);
+			sousMarins = new BoatXX("Sous Marins",3,0, 0, 3, true);
+			torpilleur = new BoatXX("Torpilleur",4,0,0,2,true);
 		}
 
 		this.listeBoatPlayer.add(portAvion);
@@ -131,6 +134,12 @@ public class Plateau {
 
 
 
+	public String getEpoch() {
+		return epoch;
+	}
+	public void setEpoch(String epoch) {
+		this.epoch = epoch;
+	}
 	public void setListeBoat(ArrayList<Boat> listeBoat) {
 		this.listeBoatPlayer = listeBoat;
 	}

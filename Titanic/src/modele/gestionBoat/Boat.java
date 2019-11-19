@@ -5,15 +5,17 @@ public abstract class Boat {
 	protected int posX, posY, size, hp;
 	protected boolean horizontal, dead;
 	protected String name;
+	protected int id;
 	
 	// horizontal = true, else vertical
-	public Boat(String name,int x, int y, int size, boolean horizontal) {
+	public Boat(String name, int id ,int x, int y, int size, boolean horizontal) {
 		this.posX = x;
 		this.posY = y;
 		this.size = size;
 		this.horizontal = horizontal;
 		this.name = name;
 		dead = false;
+		this.id = id;
 	}
 
 	public int getPosX() {
