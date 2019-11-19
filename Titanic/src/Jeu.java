@@ -1,6 +1,10 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.desktop.SystemEventListener;
 import java.util.Random;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
 
 import modele.Modele;
 import modele.gestionBoat.Boat;
@@ -8,15 +12,41 @@ import modele.gestionBoat.Plateau;
 import modele.player.Human;
 import modele.player.IA;
 import modele.player.Player;
+import view.VueGrilleEnnemi;
+import view.VueGrilleJoueur;
 
-public class Main {
+public class Jeu extends JFrame{
+	
+	public static Jeu instance;
+	
+	public static Jeu getInstance() {
+		if (instance == null) {
+			instance = new Jeu();
+		}
+		return instance;
+	}
+	
+	public Jeu () {
 
-	public static void main(String[] args) {
+
+		this.setTitle("TITANIC");
+		setPreferredSize(new Dimension(2000, 950));
+		
+		
 		Plateau plateau = new Plateau("XVI");
 		Plateau plateau2 = new Plateau("XVI");
 		
 		Player human = new Human(plateau,50,plateau.getListeBoat());
 		Player IA = new IA(plateau2, 50, plateau.getListeBoat());
+		
+		VueGrilleJoueur grillePlayer = new VueGrilleJoueur(human);
+		VueGrilleEnnemi grilleEnnemi = new VueGrilleEnnemi(human);
+		
+		this.add(grillePlayer, BorderLayout.WEST);
+		this.add(grilleEnnemi, BorderLayout.EAST);
+		
+		
+		/*
 		
 		//to remove this part when coding the view
 		for(Boat b: plateau.getListeBoat()) {
@@ -65,7 +95,19 @@ public class Main {
 				System.out.print(IA.getPlateau().getGrillPlayer()[j][i] + " | ");
 			}
 			System.out.println("\n");
-		}
+		}*/
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) ;
+		this.pack();
+		this.setVisible(true);
 	}
+	
+	
+	
 
+	public static void main(String[] args) {
+		
+
+		Jeu j = new Jeu();
+	}
 }
