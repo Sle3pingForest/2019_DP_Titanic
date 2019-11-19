@@ -14,8 +14,8 @@ public class Plateau {
 	protected ArrayList<Boat> listeBoatPlayer;
 
 	public Plateau(String epoch) {
-		this.grillPlayer = new int[WIDTH][HIGHT];
-		this.grillOpponent = new int[WIDTH][HIGHT];
+		this.grillPlayer = new Case[WIDTH][HIGHT];
+		this.grillOpponent = new Case[WIDTH][HIGHT];
 		initializerPlateau();
 		this.listeBoatPlayer = new ArrayList<Boat>();
 		settingBoat(epoch);
@@ -23,7 +23,7 @@ public class Plateau {
 
 	}
 	//check if can place the boat with no collison on other , and the boat stay on plateau on out range
-	public boolean boatPositionEmpty(int[][] grille,int x , int y,Boat boat) { 
+	public boolean boatPositionEmpty(Case[][] grille,int x , int y,Boat boat) { 
 		boolean empty=true;
 		if(boat.isHorizontal()) {
 			if(isEmpty(grille,x,y) && (x+ boat.getSize() <= WIDTH) ){
@@ -62,11 +62,11 @@ public class Plateau {
 	public String getEpoch() {
 		return epoch;
 	}
-	public int[][] getGrillOpponent() {
+	public Case[][] getGrillOpponent() {
 		return grillOpponent;
 	}
 	
-	public int[][] getGrillPlayer() {
+	public Case[][] getGrillPlayer() {
 		return grillPlayer;
 	}
 
@@ -83,16 +83,16 @@ public class Plateau {
 		int i ,j;
 		for(i=0; i<WIDTH; i++) {
 			for(j=0; j<HIGHT; j++) {
-				grillPlayer[i][j]=-1;//Empty
-				grillOpponent[i][j]=-1;
+				grillPlayer[i][j].setId(-1);//Empty
+				grillOpponent[i][j].setId(-1);
 			}
 		}
 
 	}
 
 
-	public boolean isEmpty(int[][] grille,int x , int y) { 	 
-		return grille[x][y]==-1;//true if is Empty
+	public boolean isEmpty(Case[][] grille,int x , int y) { 	 
+		return grille[x][y].getid()==-1;//true if is Empty
 	}
 
 
