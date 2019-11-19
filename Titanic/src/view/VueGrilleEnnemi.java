@@ -1,5 +1,5 @@
 package view;
 
-public class VueEnnemi extends VueGrille {
+public class VueGrilleEnnemi  {
 
 }
