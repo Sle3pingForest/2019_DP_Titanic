@@ -102,17 +102,17 @@ public class Plateau {
 
 
 	public void setGrilleValue(int i, int j, int val) {
-		this.grillPlayer[i][j] = val;
+		this.grillPlayer[i][j].setId(val);
 	}
 
 
-	public void setGrillOpponent(int[][] grillOpponent) {
+	public void setGrillOpponent(Case[][] grillOpponent) {
 		this.grillOpponent = grillOpponent;
 	}
 
 
 
-	public void setGrillPlayer(int[][] grillPlayer) {
+	public void setGrillPlayer(Case[][] grillPlayer) {
 		this.grillPlayer = grillPlayer;
 	}
 	public void setListeBoat(ArrayList<Boat> listeBoat) {
