@@ -91,8 +91,10 @@ public class Plateau {
 	}
 
 
-	public boolean isEmpty(Case[][] grille,int x , int y) { 	 
-		return grille[x][y].getid()==-1;//true if is Empty
+	public boolean isEmpty(Case[][] grille,int x , int y) { 	
+		if(grille[x][y].isWater() && grille[x][y].getid()==-1)
+			return true ;//true if is Empty
+		return false;
 	}
 
 
