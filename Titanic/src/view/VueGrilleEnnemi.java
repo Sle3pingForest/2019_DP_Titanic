@@ -6,16 +6,17 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import modele.Modele;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
 public class VueGrilleEnnemi extends JPanel  {
 	protected CaseGraphic[][] cases;
 	protected CaseGraphic[] coordonneX, coordonneY;
-	protected Player p;
+	protected Modele modele;
 	
-	public VueGrilleEnnemi(Player p) {
-		this.p = p;
+	public VueGrilleEnnemi(Modele modele) {
+		this.modele = modele;
     	this.setPreferredSize(new Dimension(CaseGraphic.SIZE*11, CaseGraphic.SIZE*11));
 		initGrill();
 	}

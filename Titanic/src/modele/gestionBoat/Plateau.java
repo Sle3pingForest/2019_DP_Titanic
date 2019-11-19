@@ -23,12 +23,12 @@ public class Plateau {
 
 	}
 	//check if can place the boat with no collison on other , and the boat stay on plateau on out range
-	public boolean boatPositionEmpty(Case[][] grille,int x , int y,Boat boat) { 
+	public boolean boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) { 
 		boolean empty=true;
-		if(boat.isHorizontal()) {
-			if(isEmpty(grille,x,y) && (x+ boat.getSize() <= WIDTH) ){
+		if(listeBoatPlayer.get(idboat).isHorizontal()) {
+			if(isEmpty(grille,x,y) && (x+ listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
 				int i = x+1 ;
-				while(i <= boat.getSize() && empty==true) {
+				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
 					if(isEmpty(grille,i,y))
 						i++;
 					else 
@@ -40,10 +40,10 @@ public class Plateau {
 				empty = false;
 			}
 		}
-		if(!boat.isHorizontal() ) {
-			if(isEmpty(grille,x,y) && (y+ boat.getSize() <= HIGHT) ){
+		if(!listeBoatPlayer.get(idboat).isHorizontal() ) {
+			if(isEmpty(grille,x,y) && (y+ listeBoatPlayer.get(idboat).getSize() <= HIGHT) ){
 				int i = y+1 ;
-				while(i <= boat.getSize() && empty==true) {
+				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
 					if(isEmpty(grille,x,i))
 						i++;
 					else 
@@ -83,8 +83,8 @@ public class Plateau {
 		int i ,j;
 		for(i=0; i<WIDTH; i++) {
 			for(j=0; j<HIGHT; j++) {
-				grillPlayer[i][j].setId(-1);//Empty
-				grillOpponent[i][j].setId(-1);
+				grillPlayer[i][j] = new Case(-1);//Empty
+				grillOpponent[i][j] = new Case(-1);
 			}
 		}
 

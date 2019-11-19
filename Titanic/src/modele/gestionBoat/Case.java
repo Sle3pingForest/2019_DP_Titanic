@@ -4,6 +4,7 @@ public class Case {
 	private int id;
 	private boolean Touched;
 	private boolean Water;
+	private int x,  y;
 	
     /****************Constructor********************/
 	public Case(int id) {
@@ -17,6 +18,14 @@ public class Case {
 		this.id = id;
 		this.Touched = toucher;
 		this.Water = eau;
+	}
+	
+	public Case(int id,int x, int y, boolean toucher, boolean eau) {
+		this.id = id;
+		this.Touched = toucher;
+		this.Water = eau;
+		this.x = x;
+		this.y = y;
 	}
 	 /****************End_Constructor***************/
 

@@ -1,9 +1,14 @@
 package modele;
 
+import java.util.Observable;
+import java.util.Random;
+import java.util.Scanner;
+
+import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
-public class Modele {
+public class Modele extends Observable {
 	
 	public Player p1;
 	public Player p2;
@@ -17,6 +22,44 @@ public class Modele {
 		this.p2.setPlateau(plateau2);
 		//this.p1.setBoats(this.plateau.getListeBoat());
 		//this.p2.setBoats(this.plateau2.getListeBoat());
+	}
+	
+	
+	public boolean settingBoatPositionP1(int x, int y, boolean direction, int idBoat) {
+			boolean isOk = false;
+			p1.getBoats().get(idBoat).setHorizontal(direction);
+			isOk = p1.placeBoat(x,y,idBoat);
+	        setChanged();
+	        notifyObservers();
+	        if(idBoat == 4) {
+	        	for(int i = 10 ; i >= 0 ; i--) {
+					for(int j = 0; j < 11; j++) {
+						System.out.print(p1.getPlateau().getGrillPlayer()[j][i].getid() + " | ");
+					}
+					System.out.println("\n");
+				}
+	        }
+			return isOk ;	
+	}
+	
+	
+	
+	public void settingBoatPositionP2() {//Randome setting because P2 is a IA
+		int i =0;
+		for(Boat b: p2.getBoats()) {
+			boolean isPlace = false;
+			while(!isPlace) {
+				System.out.println("Patient IA place ses bateaux");
+				Random rnd = new Random();
+				int x =rnd.nextInt(11) ;
+				int y = rnd.nextInt(11);
+				int direction = rnd.nextInt(2);
+				b.setHorizontal(direction == 1);
+				isPlace = p2.placeBoat(x,y,i);
+			}
+			i++;
+		}
+		
 	}
 
 	public Player getP1() {

@@ -5,22 +5,29 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controlleur.ControllerPoserBoat;
+import modele.Modele;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
-public class VueGrilleJoueur extends JPanel {
+public class VueGrilleJoueur extends JPanel implements Observer {
 	protected CaseGraphic[][] cases;
 	protected CaseGraphic[] coordonneX, coordonneY;
 	protected Player p;
 	
-	public VueGrilleJoueur(Player p) {
-		this.p = p;
+	public VueGrilleJoueur(Modele modele) {
+		this.p = modele.getP1();
     	this.setPreferredSize(new Dimension(CaseGraphic.SIZE*11, CaseGraphic.SIZE*11));
 		initGrill();
+
+        p.addObserver(this);
+		this.addMouseListener(new ControllerPoserBoat(modele, this));
 	}
 	
 	public void initGrill() {
@@ -65,5 +72,11 @@ public class VueGrilleJoueur extends JPanel {
         
         
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
