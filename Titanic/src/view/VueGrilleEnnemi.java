@@ -31,7 +31,6 @@ public class VueGrilleEnnemi extends JPanel  {
 			CaseGraphic cX = new CaseGraphic((i+1)*CaseGraphic.SIZE, 0,"images/para.jpg");
 			this.coordonneX[i] = cX;
     	}
-		System.out.println(this.coordonneX.length);
 		for(int i = 1 ; i < Plateau.WIDTH  ; i ++) {
 			for(int j = 1; j < Plateau.HIGHT; j++) {
 				CaseGraphic c1 = new CaseGraphic(i*CaseGraphic.SIZE, j*CaseGraphic.SIZE,"images/back.jpg");

@@ -25,7 +25,7 @@ public class ControllerPoserBoat implements MouseListener {
 			int x = e.getX()/CaseGraphic.SIZE;
 			int y = e.getY()/CaseGraphic.SIZE;
 			if(idBoat < 5) {
-				boolean isOk = modele.settingBoatPositionP1(x,y,true,idBoat);
+				boolean isOk = modele.settingBoatPositionP1(x,y,-1,idBoat);
 				if(isOk ) {
 					idBoat++;
 				}

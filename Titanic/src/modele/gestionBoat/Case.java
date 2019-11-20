@@ -13,6 +13,14 @@ public class Case {
 		this.Touched = false; 
 		
 	}
+	public Case(int id, int x, int y) {
+		this.id = id;
+		this.Water = true;
+		this.Touched = false; 
+		this.x = x;
+		this.y = y;
+		
+	}
 
 	public Case(int id, boolean toucher, boolean eau) {
 		this.id = id;
@@ -51,6 +59,34 @@ public class Case {
 		return this.Water;
 	}
 
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setTouched(boolean touched) {
+		Touched = touched;
+	}
+
+	public void setWater(boolean water) {
+		Water = water;
+	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

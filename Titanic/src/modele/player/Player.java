@@ -20,31 +20,43 @@ public abstract class Player extends Observable{
 		this.boats=(ArrayList<Boat>) boats;
 	}
 
+	public boolean validePosition(int x , int y, int idBoat) {
+		
+		return plateau.boatPositionEmpty(plateau.getGrillPlayer(),x,y, idBoat);
+	}
 
 	//function who place the boat in the player grille
 	public boolean placeBoat(int x , int y, int idBoat){
 			if(plateau.boatPositionEmpty(plateau.getGrillPlayer(),x,y, idBoat)) {
 				boats.get(idBoat).setPosX(x);
 				boats.get(idBoat).setPosY(y);
-				if(boats.get(idBoat).isHorizontal()) {
+				if(boats.get(idBoat).getDirection() == 0) {
 					for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
-						//plateau.getGrillPlayer()[b.getPosX() + i][b.getPosY()] = 1;
 						this.plateau.setGrilleValue(boats.get(idBoat).getPosX() + i, boats.get(idBoat).getPosY(), idBoat);
-
-						//for ilef i dont know if i should set ater to false. (NAM)
-						boats.get(idBoat).setHorizontal(true);
+						plateau.getGrillPlayer()[x+i][y].setX(x+i);
+						plateau.getGrillPlayer()[x][y].setY(y);
+						boats.get(idBoat).setDirection(0);
 					}
 				}
 				else {
 					for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
 						this.plateau.setGrilleValue(boats.get(idBoat).getPosX(), boats.get(idBoat).getPosY()+ i,idBoat);
-						boats.get(idBoat).setHorizontal(false);
+
+						plateau.getGrillPlayer()[x][y].setX(x);
+						plateau.getGrillPlayer()[x][y+i].setY(y+i);
+						boats.get(idBoat).setDirection(1);
 					}
 				}
+
+		        setChanged();
+		        notifyObservers();
 				return true;
 			}
 			else {
 				System.out.println("placement du bateau: " + boats.get(idBoat).getName() + " incorrect ");
+
+		        setChanged();
+		        notifyObservers();
 				return false;
 			}
 	}

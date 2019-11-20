@@ -4,15 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controlleur.ControllerPoserBoat;
 import modele.Modele;
+import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
@@ -20,12 +24,15 @@ public class VueGrilleJoueur extends JPanel implements Observer {
 	protected CaseGraphic[][] cases;
 	protected CaseGraphic[] coordonneX, coordonneY;
 	protected Player p;
+	protected Modele modele;
+	public Graphics g;
+	protected int direction ;
 	
 	public VueGrilleJoueur(Modele modele) {
 		this.p = modele.getP1();
+		this.modele = modele;
     	this.setPreferredSize(new Dimension(CaseGraphic.SIZE*11, CaseGraphic.SIZE*11));
 		initGrill();
-
         p.addObserver(this);
 		this.addMouseListener(new ControllerPoserBoat(modele, this));
 	}
@@ -51,31 +58,59 @@ public class VueGrilleJoueur extends JPanel implements Observer {
 		}
 	}
 	 
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g){
     	super.paintComponent(g);
+    	this.g = g;
     	for (int j = 0; j < 10 ; j++ ) {
-    		g.drawImage(coordonneY[j].getImageCase(),coordonneY[j].getX(), coordonneY[j].getY(),this);
-    		g.drawImage(coordonneX[j].getImageCase(),coordonneX[j].getX(), coordonneX[j].getY(),this);
+    		g.drawImage(coordonneY[j].getImageCase(),coordonneY[j].getX(), coordonneY[j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
+    		g.drawImage(coordonneX[j].getImageCase(),coordonneX[j].getX(), coordonneX[j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
 			g.setColor(Color.blue);
 			g.drawRect(coordonneX[j].getX(), coordonneX[j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE);
 			g.drawRect(coordonneY[j].getX(), coordonneY[j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
     	}
         for (int i = 0; i < 10 ; i++ )  {
         	for (int j = 0; j < 10 ; j++ ) {
-        		g.drawImage(cases[i][j].getImageCase(),cases[i][j].getX(), cases[i][j].getY(),this);
-
+        		g.drawImage(cases[i][j].getImageCase(),cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
     			g.setColor(Color.blue);
     			g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
         	}
-        }
+        }    
+    	
+        for (int i = 0; i < 10 ; i++ )  {
+        	for (int j = 0; j < 10 ; j++ ) {
+        		if(p.getPlateau().getGrillPlayer()[i+1][j+1].getid() != -1) {
+        			try {
+						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/boat.png"));
+			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
+			        	
+			        	g.setColor(Color.blue);
+			        	g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
+			        		
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+        	    }
+        	}
+        } 
         
         
     }
+    
+   
+
+    
+	public CaseGraphic[][] getCases() {
+		return cases;
+	}
+
+	public void setCases(CaseGraphic[][] cases) {
+		this.cases = cases;
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		repaint();
 		
 	}
     

@@ -25,7 +25,7 @@ public class Plateau {
 	//check if can place the boat with no collison on other , and the boat stay on plateau on out range
 	public boolean boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) { 
 		boolean empty=true;
-		if(listeBoatPlayer.get(idboat).isHorizontal()) {
+		if(listeBoatPlayer.get(idboat).getDirection() == 0) {
 			if(isEmpty(grille,x,y) && (x+ listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
 				int i = x+1 ;
 				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
@@ -33,14 +33,13 @@ public class Plateau {
 						i++;
 					else 
 						empty= false;
-
 				}
 			}
 			else {
 				empty = false;
 			}
 		}
-		if(!listeBoatPlayer.get(idboat).isHorizontal() ) {
+		if(!(listeBoatPlayer.get(idboat).getDirection() == 1 )) {
 			if(isEmpty(grille,x,y) && (y+ listeBoatPlayer.get(idboat).getSize() <= HIGHT) ){
 				int i = y+1 ;
 				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
@@ -48,7 +47,6 @@ public class Plateau {
 						i++;
 					else 
 						empty= false;
-
 				}
 
 			}
@@ -83,8 +81,8 @@ public class Plateau {
 		int i ,j;
 		for(i=0; i<WIDTH; i++) {
 			for(j=0; j<HIGHT; j++) {
-				grillPlayer[i][j] = new Case(-1);//Empty
-				grillOpponent[i][j] = new Case(-1);
+				grillPlayer[i][j] = new Case(-1,i,j);//Empty
+				grillOpponent[i][j] = new Case(-1,i,j);
 			}
 		}
 
@@ -129,18 +127,18 @@ public class Plateau {
 		Boat portAvion,  croiseur, sousMarins,  sousMarins2,  torpilleur;
 		this.epoch = epoch;
 		if(epoch.compareTo(XVI) == 0) {
-			portAvion = new BoatXVI("Porte Avion",0,0, 0, 5, true);
-			croiseur = new BoatXVI("Croiseur", 1,0,0, 4, true);
-			sousMarins2 = new BoatXVI("Sous Marins 2",2,0, 0, 3, true);
-			sousMarins = new BoatXVI("Sous Marins",3,0, 0, 3, true);
-			torpilleur = new BoatXVI("Torpilleur",4,0,0,2,true);
+			portAvion = new BoatXVI("Porte Avion",0,0, 0, 5, -1);
+			croiseur = new BoatXVI("Croiseur", 1,0,0, 4, -1);
+			sousMarins2 = new BoatXVI("Sous Marins 2",2,0, 0, 3, -1);
+			sousMarins = new BoatXVI("Sous Marins",3,0, 0, 3, -1);
+			torpilleur = new BoatXVI("Torpilleur",4,0,0,2,-1);
 		}
 		else {
-			portAvion = new BoatXX("Porte Avion",0,0, 0, 5, true);
-			croiseur = new BoatXX("Croiseur", 1,0,0, 4, true);
-			sousMarins2 = new BoatXX("Sous Marins 2",2,0, 0, 3, true);
-			sousMarins = new BoatXX("Sous Marins",3,0, 0, 3, true);
-			torpilleur = new BoatXX("Torpilleur",4,0,0,2,true);
+			portAvion = new BoatXX("Porte Avion",0,0, 0, 5, -1);
+			croiseur = new BoatXX("Croiseur", 1,0,0, 4, -1);
+			sousMarins2 = new BoatXX("Sous Marins 2",2,0, 0, 3, -1);
+			sousMarins = new BoatXX("Sous Marins",3,0, 0, 3, -1);
+			torpilleur = new BoatXX("Torpilleur",4,0,0,2,-1);
 		}
 
 		this.listeBoatPlayer.add(portAvion);

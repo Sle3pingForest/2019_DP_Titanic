@@ -2,17 +2,17 @@ package modele.gestionBoat;
 
 public abstract class Boat {
 	
-	protected boolean horizontal, dead;
-	protected int id;
+	protected boolean dead;
+	protected int id,direction;
 	protected String name;
 	protected int posX, posY, size, hp;
 	
 	// horizontal = true, else vertical
-	public Boat(String name, int id ,int x, int y, int size, boolean horizontal) {
+	public Boat(String name, int id ,int x, int y, int size, int horizontal) {
 		this.posX = x;
 		this.posY = y;
 		this.size = size;
-		this.horizontal = horizontal;
+		this.direction = horizontal;
 		this.name = name;
 		dead = false;
 		this.id = id;
@@ -42,16 +42,16 @@ public abstract class Boat {
 		return dead;
 	}
 
-	public boolean isHorizontal() {
-		return horizontal;
+	public int getDirection() {
+		return direction;
 	}
 
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}
 
-	public void setHorizontal(boolean horizontal) {
-		this.horizontal = horizontal;
+	public void setDirection(int direcction) {
+		this.direction = direction;
 	}
 
 	public void setHp(int hp) {

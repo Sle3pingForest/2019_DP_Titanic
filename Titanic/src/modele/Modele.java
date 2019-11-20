@@ -25,20 +25,14 @@ public class Modele extends Observable {
 	}
 	
 	
-	public boolean settingBoatPositionP1(int x, int y, boolean direction, int idBoat) {
+	public boolean settingBoatPositionP1(int x, int y, int direction, int idBoat) {
 			boolean isOk = false;
-			p1.getBoats().get(idBoat).setHorizontal(direction);
+			p1.getBoats().get(idBoat).setDirection(direction);
 			isOk = p1.placeBoat(x,y,idBoat);
+
+	        
 	        setChanged();
 	        notifyObservers();
-	        if(idBoat == 4) {
-	        	for(int i = 10 ; i >= 0 ; i--) {
-					for(int j = 0; j < 11; j++) {
-						System.out.print(p1.getPlateau().getGrillPlayer()[j][i].getid() + " | ");
-					}
-					System.out.println("\n");
-				}
-	        }
 			return isOk ;	
 	}
 	
@@ -53,8 +47,8 @@ public class Modele extends Observable {
 				Random rnd = new Random();
 				int x =rnd.nextInt(11) ;
 				int y = rnd.nextInt(11);
-				int direction = rnd.nextInt(2);
-				b.setHorizontal(direction == 1);
+				int direction = rnd.nextInt(4);
+				b.setDirection(direction);
 				isPlace = p2.placeBoat(x,y,i);
 			}
 			i++;
@@ -77,5 +71,8 @@ public class Modele extends Observable {
 	public void setP2(Player p2) {
 		this.p2 = p2;
 	}
+
+
+
 	
 }
