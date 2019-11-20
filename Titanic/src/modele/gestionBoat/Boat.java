@@ -50,7 +50,7 @@ public abstract class Boat {
 		this.dead = dead;
 	}
 
-	public void setDirection(int direcction) {
+	public void setDirection(int direction) {
 		this.direction = direction;
 	}
 

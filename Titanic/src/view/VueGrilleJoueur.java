@@ -26,7 +26,6 @@ public class VueGrilleJoueur extends JPanel implements Observer {
 	protected Player p;
 	protected Modele modele;
 	public Graphics g;
-	protected int direction ;
 	
 	public VueGrilleJoueur(Modele modele) {
 		this.p = modele.getP1();
@@ -92,13 +91,14 @@ public class VueGrilleJoueur extends JPanel implements Observer {
         	    }
         	}
         } 
+      
         
         
     }
     
    
 
-    
+
 	public CaseGraphic[][] getCases() {
 		return cases;
 	}

@@ -26,7 +26,7 @@ public class Plateau {
 	public boolean boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) { 
 		boolean empty=true;
 		if(listeBoatPlayer.get(idboat).getDirection() == 0) {
-			if(isEmpty(grille,x,y) && (x+ listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
+			if(isEmpty(grille,x,y) && (x + listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
 				int i = x+1 ;
 				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
 					if(isEmpty(grille,i,y))
@@ -39,12 +39,41 @@ public class Plateau {
 				empty = false;
 			}
 		}
-		if(!(listeBoatPlayer.get(idboat).getDirection() == 1 )) {
+		else if(listeBoatPlayer.get(idboat).getDirection() == 1 ) {
 			if(isEmpty(grille,x,y) && (y+ listeBoatPlayer.get(idboat).getSize() <= HIGHT) ){
 				int i = y+1 ;
 				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
 					if(isEmpty(grille,x,i))
 						i++;
+					else 
+						empty= false;
+				}
+
+			}
+			else {
+				empty = false;
+			}
+		}
+		else if(listeBoatPlayer.get(idboat).getDirection() == 2) {
+			if(isEmpty(grille,x,y) && (x - listeBoatPlayer.get(idboat).getSize() >=0) ){
+				int i = x - 1 ;
+				while(i >= 0 && empty==true) {
+					if(isEmpty(grille,i,y))
+						i--;
+					else 
+						empty= false;
+				}
+			}
+			else {
+				empty = false;
+			}
+		}
+		else if(listeBoatPlayer.get(idboat).getDirection() == 3 ) {
+			if(isEmpty(grille,x,y) && (y -listeBoatPlayer.get(idboat).getSize() >= 0) ){
+				int i = y -1;
+				while(i > 0 && empty==true) {
+					if(isEmpty(grille,x,i))
+						i--;
 					else 
 						empty= false;
 				}

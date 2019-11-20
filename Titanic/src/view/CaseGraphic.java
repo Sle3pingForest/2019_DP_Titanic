@@ -20,12 +20,14 @@ public class CaseGraphic extends JButton{
 	public boolean estTouche;
 	public BufferedImage imageCase;
 	public static int SIZE = 80;
+	public boolean isWater;
 	
 	public CaseGraphic(int x,int y, String path){
 		super("");
 		this.x=x;
 		this.y=y;
 		this.estTouche = false;
+		isWater = true;
 		settingImage(path);
 		setPreferredSize(new Dimension(SIZE, SIZE));
 	}
@@ -83,6 +85,18 @@ public class CaseGraphic extends JButton{
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public boolean isWater() {
+		return isWater;
+	}
+
+
+
+	public void setWater(boolean isWater) {
+		this.isWater = isWater;
+	}
+
+
 
 	public Color getColor() {
 		return color;
