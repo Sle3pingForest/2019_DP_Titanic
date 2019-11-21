@@ -23,67 +23,55 @@ public class Plateau {
 
 	}
 	//check if can place the boat with no collison on other , and the boat stay on plateau on out range
-	public boolean boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) { 
+	public ArrayList<Integer> boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) { 
+		ArrayList<Integer> listeDirection = new ArrayList<Integer>();
 		boolean empty=true;
-		if(listeBoatPlayer.get(idboat).getDirection() == 0) {
-			if(isEmpty(grille,x,y) && (x + listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
-				int i = x+1 ;
-				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
-					if(isEmpty(grille,i,y))
-						i++;
-					else 
-						empty= false;
-				}
+		if(isEmpty(grille,x,y) && (x + listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
+			int i = 0;
+			while(i < listeBoatPlayer.get(idboat).getSize() && empty) {
+				empty = isEmpty(grille, x+i, y);
+				i++;
 			}
-			else {
-				empty = false;
+			if(empty) {
+				listeDirection.add(0);
 			}
 		}
-		else if(listeBoatPlayer.get(idboat).getDirection() == 1 ) {
-			if(isEmpty(grille,x,y) && (y+ listeBoatPlayer.get(idboat).getSize() <= HIGHT) ){
-				int i = y+1 ;
-				while(i <= listeBoatPlayer.get(idboat).getSize() && empty==true) {
-					if(isEmpty(grille,x,i))
-						i++;
-					else 
-						empty= false;
-				}
-
+		empty = true;
+		if(isEmpty(grille,x,y) && (y+ listeBoatPlayer.get(idboat).getSize() <= HIGHT) ){
+			int i = 0;
+			while(i < listeBoatPlayer.get(idboat).getSize() && empty) {
+				empty = isEmpty(grille,x,y+i);
+				i++;
 			}
-			else {
-				empty = false;
+			if(empty) {
+				listeDirection.add(1);
 			}
 		}
-		else if(listeBoatPlayer.get(idboat).getDirection() == 2) {
-			if(isEmpty(grille,x,y) && (x - listeBoatPlayer.get(idboat).getSize() >=0) ){
-				int i = x - 1 ;
-				while(i >= 0 && empty==true) {
-					if(isEmpty(grille,i,y))
-						i--;
-					else 
-						empty= false;
-				}
+		empty = true;
+		if(isEmpty(grille,x,y) && (x - listeBoatPlayer.get(idboat).getSize() >=0) ){
+			int i = 0;
+			while(i < listeBoatPlayer.get(idboat).getSize() && empty) {
+				empty = isEmpty(grille,x-i,y);
+				i++;
 			}
-			else {
-				empty = false;
+			if(empty) {
+				listeDirection.add(2);
 			}
 		}
-		else if(listeBoatPlayer.get(idboat).getDirection() == 3 ) {
-			if(isEmpty(grille,x,y) && (y -listeBoatPlayer.get(idboat).getSize() >= 0) ){
-				int i = y -1;
-				while(i > 0 && empty==true) {
-					if(isEmpty(grille,x,i))
-						i--;
-					else 
-						empty= false;
-				}
-
+		empty = true;
+		if(isEmpty(grille,x,y) && (y - listeBoatPlayer.get(idboat).getSize() >= 0) ){
+			empty = true;
+			int i = 0;
+			while(i < listeBoatPlayer.get(idboat).getSize()&& empty) {
+				empty = isEmpty(grille,x,y-i);
+				i++;
 			}
-			else {
-				empty = false;
+			if(empty) {
+				listeDirection.add(3);
 			}
 		}
-		return empty;
+		System.out.println("END : "+ listeDirection.size());
+		return listeDirection;
 	}
 
 	public String getEpoch() {
@@ -173,7 +161,7 @@ public class Plateau {
 		this.listeBoatPlayer.add(portAvion);
 		this.listeBoatPlayer.add(croiseur);
 		this.listeBoatPlayer.add(sousMarins);
-		this.listeBoatPlayer.add(torpilleur);
 		this.listeBoatPlayer.add(sousMarins2);
+		this.listeBoatPlayer.add(torpilleur);
 	}
 }

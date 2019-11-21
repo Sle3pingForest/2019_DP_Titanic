@@ -20,63 +20,55 @@ public abstract class Player extends Observable{
 		this.boats=(ArrayList<Boat>) boats;
 	}
 
-	public boolean validePosition(int x , int y, int idBoat) {
+	public ArrayList<Integer> validePosition(int x , int y, int idBoat) {
 		
 		return plateau.boatPositionEmpty(plateau.getGrillPlayer(),x,y, idBoat);
 	}
 
 	//function who place the boat in the player grille
 	public boolean placeBoat(int x , int y, int direction, int idBoat){
-			if(plateau.boatPositionEmpty(plateau.getGrillPlayer(),x,y, idBoat)) {
-				boats.get(idBoat).setPosX(x);
-				boats.get(idBoat).setPosY(y);
-				if(direction == 0) {
-					for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
-						this.plateau.setGrilleValue(boats.get(idBoat).getPosX() + i, boats.get(idBoat).getPosY(), idBoat);
-						plateau.getGrillPlayer()[x+i][y].setX(x+i);
-						plateau.getGrillPlayer()[x][y].setY(y);
-						boats.get(idBoat).setDirection(direction);
-					}
-					
-				}
-				else if(direction == 1){
-					for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
-						this.plateau.setGrilleValue(boats.get(idBoat).getPosX(), boats.get(idBoat).getPosY()+ i,idBoat);
-						plateau.getGrillPlayer()[x][y].setX(x);
-						plateau.getGrillPlayer()[x][y+i].setY(y+i);
-					}
+			boats.get(idBoat).setPosX(x);
+			boats.get(idBoat).setPosY(y);
+			if(direction == 0) {
+				for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
+					this.plateau.setGrilleValue(boats.get(idBoat).getPosX() + i, boats.get(idBoat).getPosY(), idBoat);
+					plateau.getGrillPlayer()[x+i][y].setX(x+i);
+					plateau.getGrillPlayer()[x][y].setY(y);
+					boats.get(idBoat).setDirection(direction);
 				}
 				
-
-				else if(direction == 2){
-					for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
-						this.plateau.setGrilleValue(boats.get(idBoat).getPosX() - i, boats.get(idBoat).getPosY(), idBoat);
-						plateau.getGrillPlayer()[x-i][y].setX(x-i);
-						plateau.getGrillPlayer()[x][y].setY(y);
-						boats.get(idBoat).setDirection(direction);
-					}
-				}
-
-				else if(direction == 3){
-					for(int i = 0 ;i <  boats.get(idBoat).getSize() - 1; i++) {
-						System.out.println(boats.get(idBoat).getPosY()-i);
-						this.plateau.setGrilleValue(boats.get(idBoat).getPosX(), boats.get(idBoat).getPosY()-i,idBoat);
-						plateau.getGrillPlayer()[x][y].setX(x);
-						plateau.getGrillPlayer()[x][y-i].setY(y-i);
-					}
-				}
-
-		        setChanged();
-		        notifyObservers();
-				return true;
 			}
-			else {
-				System.out.println("placement du bateau: " + boats.get(idBoat).getName() + " incorrect ");
-
-		        setChanged();
-		        notifyObservers();
-				return false;
+			else if(direction == 1){
+				for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
+					this.plateau.setGrilleValue(boats.get(idBoat).getPosX(), boats.get(idBoat).getPosY()+ i,idBoat);
+					plateau.getGrillPlayer()[x][y].setX(x);
+					plateau.getGrillPlayer()[x][y+i].setY(y+i);
+					boats.get(idBoat).setDirection(direction);
+				}
 			}
+			
+
+			else if(direction == 2){
+				for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
+					this.plateau.setGrilleValue(boats.get(idBoat).getPosX() - i, boats.get(idBoat).getPosY(), idBoat);
+					plateau.getGrillPlayer()[x-i][y].setX(x-i);
+					plateau.getGrillPlayer()[x][y].setY(y);
+					boats.get(idBoat).setDirection(direction);
+				}
+			}
+
+			else if(direction == 3){
+				for(int i = 0 ;i <  boats.get(idBoat).getSize(); i++) {
+					this.plateau.setGrilleValue(boats.get(idBoat).getPosX(), boats.get(idBoat).getPosY()-i,idBoat);
+					plateau.getGrillPlayer()[x][y].setX(x);
+					plateau.getGrillPlayer()[x][y-i].setY(y-i);
+				}
+			}
+
+	        setChanged();
+	        notifyObservers();
+			return true;
+		
 	}
 
 	public abstract String playerType();

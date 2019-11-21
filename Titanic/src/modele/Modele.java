@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class Modele extends Observable {
 	public Player p1;
 	public Player p2;
 	public Plateau plateau;
+	public static String[] DIRECTION = {"EAST", "SOUTH", "WEST", "NORTH"};
 	
 	public Modele(Player p1, Player p2, Plateau plateau, Plateau plateau2) {
 		this.p1 = p1;
@@ -25,11 +27,24 @@ public class Modele extends Observable {
 	}
 	
 	
-	public boolean settingBoatPositionP1(int x, int y, int direction, int idBoat) {
+	public ArrayList<Integer> checkPosition(int x , int y , int idBoat) {
+		return p1.validePosition(x, y, idBoat);
+	}
+	
+	public boolean settingBoatPositionP1(int x, int y, String direction, int idBoat) {
 			boolean isOk = false;
-			isOk = p1.placeBoat(x,y,direction ,idBoat);
-
-	        
+			if(direction.compareTo(DIRECTION[0]) == 0) {
+				isOk = p1.placeBoat(x,y,0 ,idBoat);
+			}
+			if(direction.compareTo(DIRECTION[1]) == 0) {
+				isOk = p1.placeBoat(x,y,1 ,idBoat);
+			}
+			if(direction.compareTo(DIRECTION[2]) == 0) {
+				isOk = p1.placeBoat(x,y,2 ,idBoat);
+			}
+			if(direction.compareTo(DIRECTION[3]) == 0) {
+				isOk = p1.placeBoat(x,y,3 ,idBoat);
+			}
 	        setChanged();
 	        notifyObservers();
 			return isOk ;	
