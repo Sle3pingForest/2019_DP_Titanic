@@ -70,7 +70,6 @@ public class Plateau {
 				listeDirection.add(3);
 			}
 		}
-		System.out.println("END : "+ listeDirection.size());
 		return listeDirection;
 	}
 

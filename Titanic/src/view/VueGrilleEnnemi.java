@@ -17,11 +17,14 @@ public class VueGrilleEnnemi extends JPanel  {
 	protected CaseGraphic[][] cases;
 	protected CaseGraphic[] coordonneX, coordonneY;
 	protected Modele modele;
+	protected Player p;
 	
 	public VueGrilleEnnemi(Modele modele) {
 		this.modele = modele;
+		this.p = modele.getP2();
     	this.setPreferredSize(new Dimension(CaseGraphic.SIZE*11, CaseGraphic.SIZE*11));
 		initGrill();
+		modele.settingBoatPositionP2();
 	}
 	
 	public void initGrill() {
@@ -60,7 +63,24 @@ public class VueGrilleEnnemi extends JPanel  {
     			g.setColor(Color.blue);
     			g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
         	}
-        }    
+        }  
+        
+        for (int i = 0; i < 10 ; i++ )  {
+        	for (int j = 0; j < 10 ; j++ ) {
+        		if(p.getPlateau().getGrillPlayer()[i+1][j+1].getid() != -1) {
+        			try {
+						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/boat.png"));
+			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
+			        	
+			        	g.setColor(Color.blue);
+			        	g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
+			        		
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+        	    }
+        	}
+        } 
 
     
     }

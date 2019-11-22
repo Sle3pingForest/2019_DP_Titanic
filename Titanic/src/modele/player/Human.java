@@ -9,6 +9,7 @@ public class Human extends Player {
    
 	public Human(Plateau plateau, int munition, Collection<Boat> boats) {
       super(plateau,munition,boats);
+      this.isIA = false;
 	}
 	
 	@Override

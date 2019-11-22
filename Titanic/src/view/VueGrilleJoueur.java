@@ -1,22 +1,21 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import controlleur.ControllerStartGame;
 import controlleur.ControllerPoserBoat;
 import modele.Modele;
-import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
@@ -26,6 +25,7 @@ public class VueGrilleJoueur extends JPanel implements Observer {
 	protected Player p;
 	protected Modele modele;
 	public Graphics g;
+    protected JButton start;
 	
 	public VueGrilleJoueur(Modele modele) {
 		this.p = modele.getP1();
@@ -34,6 +34,14 @@ public class VueGrilleJoueur extends JPanel implements Observer {
 		initGrill();
         p.addObserver(this);
 		this.addMouseListener(new ControllerPoserBoat(modele, this));
+
+        this.start = new JButton("Start");
+     	this.start.setEnabled(false);
+     	this.start.addActionListener(new ControllerStartGame(modele, this));
+
+     	
+     	this.add(start,BorderLayout.EAST);
+     	this.start.setPreferredSize(new Dimension(80,40));
 	}
 	
 	public void initGrill() {
@@ -110,6 +118,10 @@ public class VueGrilleJoueur extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+
+	        if(p.getReady()){
+	        	this.start.setEnabled(true);
+	        }
 		repaint();
 		
 	}

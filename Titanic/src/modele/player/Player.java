@@ -13,11 +13,14 @@ public abstract class Player extends Observable{
 	private ArrayList<Boat> boats;
 	private int munition;
 	private Plateau plateau;
+	protected boolean isIA, ready;
+
 
 	public Player(Plateau plateau, int munition, Collection<Boat> boats) {
 		this.plateau=plateau;
 		this.munition=munition;
 		this.boats=(ArrayList<Boat>) boats;
+		isIA = false;
 	}
 
 	public ArrayList<Integer> validePosition(int x , int y, int idBoat) {
@@ -73,6 +76,21 @@ public abstract class Player extends Observable{
 
 	public abstract String playerType();
 	
+	public void isReady(boolean b) {
+		ready = b;
+	}
+	
+	public boolean getReady() {
+		return ready;
+	}
+	
+	public boolean isIA() {
+		return isIA;
+	}
+
+	public void setIA(boolean isIA) {
+		this.isIA = isIA;
+	}
 	public ArrayList<Boat> getBoats() {
 		return boats;
 	}

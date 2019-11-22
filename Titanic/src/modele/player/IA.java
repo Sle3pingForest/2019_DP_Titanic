@@ -1,6 +1,7 @@
 package modele.player;
 
 import java.util.Collection;
+import java.util.Random;
 
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
@@ -12,9 +13,11 @@ public class IA extends Player {
      
 	public IA(Plateau plateau, int munition, Collection<Boat> boats) {
 		super(plateau, munition, boats);
-		// TODO Auto-generated constructor stub
-	}
+		isIA = true;	}
 
+	
+
+	
 	@Override
 	public String playerType() {
 		// TODO Auto-generated method stub

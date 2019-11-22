@@ -49,7 +49,10 @@ public class ControllerPoserBoat implements MouseListener {
 					idBoat++;
 				}
 			}
+			if(idBoat == 4) {
+				modele.p1.isReady(true);
 			}
+		}
 	}
 
 	@Override

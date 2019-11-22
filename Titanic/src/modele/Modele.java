@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
+import modele.player.IA;
 import modele.player.Player;
 
 public class Modele extends Observable {
@@ -22,8 +23,6 @@ public class Modele extends Observable {
 		this.plateau = plateau;
 		this.p1.setPlateau(plateau);
 		this.p2.setPlateau(plateau2);
-		//this.p1.setBoats(this.plateau.getListeBoat());
-		//this.p2.setBoats(this.plateau2.getListeBoat());
 	}
 	
 	
@@ -53,18 +52,22 @@ public class Modele extends Observable {
 	
 	
 	public void settingBoatPositionP2() {//Randome setting because P2 is a IA
-		int i =0;
+		ArrayList<Integer> directions = new ArrayList<Integer>();
 		for(Boat b: p2.getBoats()) {
 			boolean isPlace = false;
 			while(!isPlace) {
-				System.out.println("Patient IA place ses bateaux");
 				Random rnd = new Random();
-				int x =rnd.nextInt(11) ;
-				int y = rnd.nextInt(11);
-				int direction = rnd.nextInt(4);
-				isPlace = p2.placeBoat(x,y,direction,i);
+				int x =rnd.nextInt(10) + 1 ;
+				int y = rnd.nextInt(10) + 1;
+				directions = p2.validePosition(x, y, b.getId());
+				if(directions.size() != 0) {
+					int index = 0 + rnd.nextInt(directions.size());
+					isPlace = p2.placeBoat(x,y,directions.get(index),b.getId());
+				}
+				System.out.println(directions.size());
 			}
-			i++;
+	        setChanged();
+	        notifyObservers();
 		}
 	}
 
