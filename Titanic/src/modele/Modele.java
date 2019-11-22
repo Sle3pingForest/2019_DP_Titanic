@@ -66,7 +66,6 @@ public class Modele extends Observable {
 			}
 			i++;
 		}
-		
 	}
 
 	public Player getP1() {

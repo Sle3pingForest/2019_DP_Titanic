@@ -3,7 +3,10 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import modele.Modele;
@@ -42,24 +45,24 @@ public class VueGrilleEnnemi extends JPanel  {
 		}
 	}
 	 
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g){
     	super.paintComponent(g);
     	for (int j = 0; j < 10 ; j++ ) {
-    		g.drawImage(coordonneY[j].getImageCase(),coordonneY[j].getX(), coordonneY[j].getY(),this);
-    		g.drawImage(coordonneX[j].getImageCase(),coordonneX[j].getX(), coordonneX[j].getY(),this);
+    		g.drawImage(coordonneY[j].getImageCase(),coordonneY[j].getX(), coordonneY[j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
+    		g.drawImage(coordonneX[j].getImageCase(),coordonneX[j].getX(), coordonneX[j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
 			g.setColor(Color.blue);
 			g.drawRect(coordonneX[j].getX(), coordonneX[j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE);
 			g.drawRect(coordonneY[j].getX(), coordonneY[j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
     	}
         for (int i = 0; i < 10 ; i++ )  {
         	for (int j = 0; j < 10 ; j++ ) {
-        		g.drawImage(cases[i][j].getImageCase(),cases[i][j].getX(), cases[i][j].getY(),this);
-
+        		g.drawImage(cases[i][j].getImageCase(),cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
     			g.setColor(Color.blue);
     			g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
         	}
-        }
-        
+        }    
+
+    
     }
 }
+
