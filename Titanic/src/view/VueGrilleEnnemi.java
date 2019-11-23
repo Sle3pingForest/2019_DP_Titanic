@@ -5,15 +5,19 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import controlleur.ControllerPoserBoat;
+import controlleur.ControllerTirer;
 import modele.Modele;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
-public class VueGrilleEnnemi extends JPanel  {
+public class VueGrilleEnnemi extends JPanel   implements Observer{
 	protected CaseGraphic[][] cases;
 	protected CaseGraphic[] coordonneX, coordonneY;
 	protected Modele modele;
@@ -21,10 +25,12 @@ public class VueGrilleEnnemi extends JPanel  {
 	
 	public VueGrilleEnnemi(Modele modele) {
 		this.modele = modele;
-		this.p = modele.getP2();
+		this.p = modele.getP1();
     	this.setPreferredSize(new Dimension(CaseGraphic.SIZE*11, CaseGraphic.SIZE*11));
 		initGrill();
-		modele.settingBoatPositionP2();
+        p.addObserver(this);
+		this.addMouseListener(new ControllerTirer(modele, this));
+		
 	}
 	
 	public void initGrill() {
@@ -65,9 +71,9 @@ public class VueGrilleEnnemi extends JPanel  {
         	}
         }  
         
-        for (int i = 0; i < 10 ; i++ )  {
+        /*for (int i = 0; i < 10 ; i++ )  {
         	for (int j = 0; j < 10 ; j++ ) {
-        		if(p.getPlateau().getGrillPlayer()[i+1][j+1].getid() != -1) {
+        		if(p.getPlateau().getGrillOpponent()[i+1][j+1].getid() != -1) {
         			try {
 						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/boat.png"));
 			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
@@ -80,9 +86,45 @@ public class VueGrilleEnnemi extends JPanel  {
 					}
         	    }
         	}
+        } */ //function a decommente si vous voulez voir le bateau d'ennemie
+        
+        for (int i = 0; i < 10 ; i++ )  {
+        	for (int j = 0; j < 10 ; j++ ) {
+        		if(p.getPlateau().getGrillOpponent()[i+1][j+1].isTouched()) {
+        			try {
+						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/Checkp.png"));
+			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
+			        	
+			        	g.setColor(Color.blue);
+			        	g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
+			        		
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+        	    }
+        		else if(p.getPlateau().getGrillOpponent()[i+1][j+1].isDejaTireIci()) {
+        			try {
+						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/touche.png"));
+			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
+			        	
+			        	g.setColor(Color.blue);
+			        	g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
+			        		
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+        		}
+        		
+        	}
         } 
-
     
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+
+		repaint();
+	}
 }
 

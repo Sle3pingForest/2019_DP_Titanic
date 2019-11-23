@@ -73,6 +73,14 @@ public abstract class Player extends Observable{
 			return true;
 		
 	}
+	
+	
+	public boolean tireTouched(int x, int y) {
+
+        setChanged();
+        notifyObservers();
+		return this.plateau.strike(x,y);
+	}
 
 	public abstract String playerType();
 	

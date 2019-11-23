@@ -73,6 +73,14 @@ public class Plateau {
 		return listeDirection;
 	}
 
+	
+	public boolean strike(int x, int y) {
+		if(grillOpponent[x][y].getId() != -1) {
+			grillOpponent[x][y].setTouched(true);
+		}
+		return grillOpponent[x][y].getId() != -1;
+	}
+	
 	public String getEpoch() {
 		return epoch;
 	}

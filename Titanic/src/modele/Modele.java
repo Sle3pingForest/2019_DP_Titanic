@@ -15,14 +15,19 @@ public class Modele extends Observable {
 	public Player p1;
 	public Player p2;
 	public Plateau plateau;
+	public Plateau plateau2;
 	public static String[] DIRECTION = {"EAST", "SOUTH", "WEST", "NORTH"};
 	
 	public Modele(Player p1, Player p2, Plateau plateau, Plateau plateau2) {
 		this.p1 = p1;
 		this.p2 = p2;
 		this.plateau = plateau;
+		this.plateau2 = plateau2;
 		this.p1.setPlateau(plateau);
 		this.p2.setPlateau(plateau2);
+		plateau.setGrillOpponent(plateau2.getGrillPlayer());
+		plateau2.setGrillOpponent(plateau.getGrillPlayer());
+		settingBoatPositionP2();
 	}
 	
 	
@@ -57,18 +62,29 @@ public class Modele extends Observable {
 			boolean isPlace = false;
 			while(!isPlace) {
 				Random rnd = new Random();
-				int x =rnd.nextInt(10) + 1 ;
-				int y = rnd.nextInt(10) + 1;
+				int x =rnd.nextInt(11);
+				int y = rnd.nextInt(11);
 				directions = p2.validePosition(x, y, b.getId());
-				if(directions.size() != 0) {
+				if(directions.size() != 0 && x != 0 && y != 0) {
 					int index = 0 + rnd.nextInt(directions.size());
 					isPlace = p2.placeBoat(x,y,directions.get(index),b.getId());
 				}
-				System.out.println(directions.size());
 			}
 	        setChanged();
 	        notifyObservers();
 		}
+	}
+	
+	public boolean tire(int x, int y) {
+        if(p1.tireTouched(x, y)) {
+        	p2.getPlateau().getGrillPlayer()[x][y].setTouched(true);;
+        }
+        else {
+        	p2.getPlateau().getGrillPlayer()[x][y].setDejaTireIci(true);
+        }
+		setChanged();
+        notifyObservers();
+		return p1.tireTouched(x, y);
 	}
 
 	public Player getP1() {

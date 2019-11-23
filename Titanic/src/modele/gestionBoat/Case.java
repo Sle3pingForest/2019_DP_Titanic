@@ -3,6 +3,7 @@ package modele.gestionBoat;
 public class Case {
 	private int id;
 	private boolean Touched;
+	private boolean dejaTireIci;
 	private boolean Water;
 	private int x,  y;
 	
@@ -11,12 +12,14 @@ public class Case {
 		this.id = id;
 		this.Water = true;
 		this.Touched = false; 
+		this.dejaTireIci = false;
 		
 	}
 	public Case(int id, int x, int y) {
 		this.id = id;
 		this.Water = true;
 		this.Touched = false; 
+		this.dejaTireIci = false;
 		this.x = x;
 		this.y = y;
 		
@@ -26,11 +29,13 @@ public class Case {
 		this.id = id;
 		this.Touched = toucher;
 		this.Water = eau;
+		this.dejaTireIci = false;
 	}
 	
 	public Case(int id,int x, int y, boolean toucher, boolean eau) {
 		this.id = id;
 		this.Touched = toucher;
+		this.dejaTireIci = false;
 		this.Water = eau;
 		this.x = x;
 		this.y = y;
@@ -38,8 +43,15 @@ public class Case {
 	 /****************End_Constructor***************/
 
 	
+	
 	public int getid() {
 		return this.id;
+	}
+	public boolean isDejaTireIci() {
+		return dejaTireIci;
+	}
+	public void setDejaTireIci(boolean dejaTireIci) {
+		this.dejaTireIci = dejaTireIci;
 	}
 	public void touched() {
 		this.Touched = true;
