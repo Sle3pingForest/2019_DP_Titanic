@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -27,7 +28,11 @@ public class Jeu extends JFrame{
 
 
 		this.setTitle("TITANIC");
-		setPreferredSize(new Dimension(2000, 950));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
+		setPreferredSize(new Dimension(screenWidth,screenHeight));
+		
 		
 		
 		Plateau plateau = new Plateau("XVI");
