@@ -6,12 +6,14 @@ public class Case {
 	private boolean Water;
 	private int x,  y;
         private int pv =-1 ;
+        private boolean dejaTireIci; 
 	
     /****************Constructor********************/
 	public Case(int id) {
 		this.id = id;
 		this.Water = true;
 		this.Touched = false; 
+                this.dejaTireIci = false; 
 		
 	}
 	public Case(int id, int x, int y) {
@@ -20,6 +22,7 @@ public class Case {
 		this.Touched = false; 
 		this.x = x;
 		this.y = y;
+                this.dejaTireIci = false; 
 		
 	}
 
@@ -27,6 +30,7 @@ public class Case {
 		this.id = id;
 		this.Touched = toucher;
 		this.Water = eau;
+                this.dejaTireIci = false; 
 	}
 	
 	public Case(int id,int x, int y, boolean toucher, boolean eau) {
@@ -101,4 +105,16 @@ public class Case {
        public void setPv(int pv){
            this.pv=pv;
         }
+       	public boolean isDejaTireIci() { 
+
+		return dejaTireIci; 
+
+	} 
+
+	public void setDejaTireIci(boolean dejaTireIci) { 
+		this.dejaTireIci = dejaTireIci; 
+
+
+	} 
 }
+
