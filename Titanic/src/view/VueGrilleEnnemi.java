@@ -150,7 +150,6 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
         //if(this.isMyTurn()){
       	int x = e.getX()/CaseGraphic.SIZE;
 		int y = e.getY()/CaseGraphic.SIZE;
-                System.out.println(x+" "+y);
 		if(this.modele.tire(x, y)) {
                
 			System.out.println("touche trop fort");
@@ -161,7 +160,6 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
 		}
         
              
-                 System.out.println("je suis dans tirer random plateau");
                  this.modele.getP2().shoot(modele.getP1().getPlateau());
                  this.myturn=true;
                //  this.setMyturn(true);

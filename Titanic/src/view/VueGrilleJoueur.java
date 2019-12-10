@@ -91,7 +91,6 @@ public class VueGrilleJoueur extends JPanel implements Observer {
        for (int i = 0; i < 10 ; i++ )  {
         	for (int j = 0; j < 10 ; j++ ) {
         		if(this.p.getPlateau().getGrillPlayer()[i+1][j+1].isTouched()) {
-                            System.out.print("ok");
         			try {
 				       BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/Checkp.png"));
 			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
@@ -104,7 +103,6 @@ public class VueGrilleJoueur extends JPanel implements Observer {
 					}
         	    }
         		else if(this.p.getPlateau().getGrillPlayer()[i+1][j+1].isDejaTireIci()) {
-        		  System.out.print("ok");	
                             try {
 				       BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/touche.png"));
 			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);

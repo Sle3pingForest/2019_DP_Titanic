@@ -15,7 +15,6 @@ public class StategyRandom extends Strategy {
      
 	@Override
 	public void shoot(Plateau p) {
-            System.out.println("shoot rpndom");
              this.shootOk =false;
              this.plateau =p;
              grillOpponent= this.plateau.getGrillPlayer();
@@ -26,8 +25,9 @@ public class StategyRandom extends Strategy {
                 if(grillOpponent[this.getCordX()][this.getCordY()].isWater() || grillOpponent[this.getCordX()][this.getCordY()].getId()==-1) {
                      if(!grillOpponent[this.getCordX()][this.getCordY()].isTouched())
                      {
-                         grillOpponent[this.getCordX()][this.getCordY()].touched();
+                         
                          grillOpponent[this.getCordX()][this.getCordY()].setWaterisTouched(true);
+                         grillOpponent[this.getCordX()][this.getCordY()].setDejaTireIci(true);
                          setShoot(true);
                          
                      }
@@ -44,13 +44,13 @@ public class StategyRandom extends Strategy {
                            case "XVI" :
                                if( grillOpponent[this.getCordX()][this.getCordY()].getPv() == 1){
                                   grillOpponent[this.getCordX()][this.getCordY()].setPv(0);
-                                   setShoot(true);
-                                  //grillOpponent[this.getCordX()][this.getCordY()].touched();
+                                  setShoot(true);
                                }
                                else {
                                    grillOpponent[this.getCordX()][this.getCordY()].setPv(1);
-                                    setShoot(true);
+                                   setShoot(true);
                                }
+                               grillOpponent[this.getCordX()][this.getCordY()].touched();
                               break;
                            case "XX" :
                               grillOpponent[this.getCordX()][this.getCordY()].setPv(0);
@@ -102,11 +102,11 @@ public class StategyRandom extends Strategy {
         }
         
         public int getCordX(){
-            System.out.print("cord X "+cordX);
+            //System.out.print("cord X "+cordX);
                 return this.cordX;
         }
         public int getCordY(){
-              System.out.print("cord Y "+cordY);
+             // System.out.print("cord Y "+cordY);
                 return this.cordY;
         }
 
