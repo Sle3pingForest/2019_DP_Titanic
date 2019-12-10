@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 import modele.Modele;
 import modele.player.Player;
 import view.VueGrilleJoueur;
+import view.VuePlateau;
 
 public class ControllerStartGame implements ActionListener{
 
 	protected Modele m;
 	protected Player p ;
-	protected VueGrilleJoueur vue;
+	protected VuePlateau vue;
 
-	public ControllerStartGame(Modele modele, VueGrilleJoueur vue){
+	public ControllerStartGame(Modele modele, VuePlateau vue){
 		this.p = p;
 		this.vue = vue;
 	}

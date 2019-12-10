@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
-import modele.player.stategy.Strategy;
 
 public abstract class Player extends Observable{
 	private ArrayList<Boat> boats;
@@ -130,7 +129,7 @@ public abstract class Player extends Observable{
 		this.plateau = plateau;
 	}
 	public abstract void shoot(Plateau p);
-        
+
 	public void useMunition() {
 		this.munition -=1;
 	}

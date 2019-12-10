@@ -6,52 +6,17 @@ import java.awt.event.MouseListener;
 import modele.Modele;
 import view.CaseGraphic;
 import view.VueGrilleEnnemi;
+import view.VuePlateau;
 
-public class ControllerTirer implements MouseListener {
+public class ControllerTirer {
 	
 	protected Modele modele;
-	protected VueGrilleEnnemi vue;
-	
-	public ControllerTirer(Modele modele, VueGrilleEnnemi vue) {
+	protected VuePlateau vue;
+	protected VueGrilleEnnemi vueEnnemi;
+	public ControllerTirer(Modele modele,VuePlateau p) {
 		this.modele = modele;
-		this.vue = vue;
+		vueEnnemi = vueEnnemi;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		int x = e.getX()/CaseGraphic.SIZE;
-		int y = e.getY()/CaseGraphic.SIZE;
-		if(this.modele.tire(x, y)) {
-			System.out.println("touche trop fort");
-		}
-		else {
-			System.out.println("loupe gros noob");
-		}
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

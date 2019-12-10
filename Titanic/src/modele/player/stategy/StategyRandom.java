@@ -15,11 +15,12 @@ public class StategyRandom extends Strategy {
      
 	@Override
 	public void shoot(Plateau p) {
+            System.out.println("shoot rpndom");
              this.shootOk =false;
              this.plateau =p;
-             grillOpponent= this.plateau.getGrillOpponent();
+             grillOpponent= this.plateau.getGrillPlayer();
              //getDamage();
-             setXY();
+            setCordXY();
              while(getshootOk() == false ){
                 //in case if it's a  waater 
                 if(grillOpponent[this.getCordX()][this.getCordY()].isWater() || grillOpponent[this.getCordX()][this.getCordY()].getId()==-1) {
@@ -28,9 +29,10 @@ public class StategyRandom extends Strategy {
                          grillOpponent[this.getCordX()][this.getCordY()].touched();
                          grillOpponent[this.getCordX()][this.getCordY()].setWaterisTouched(true);
                          setShoot(true);
+                         
                      }
                      else 
-                         setXY();
+                        setCordXY();
                        
                  }
                  //in case it's a boat
@@ -59,12 +61,12 @@ public class StategyRandom extends Strategy {
                           } 
                      }
                      else {
-                         setXY();
+                         setCordXY();
                      }
                      
                  }
                  else 
-                      setXY();    
+                     setCordXY();    
              }
 	}
         
@@ -100,9 +102,11 @@ public class StategyRandom extends Strategy {
         }
         
         public int getCordX(){
+            System.out.print("cord X "+cordX);
                 return this.cordX;
         }
         public int getCordY(){
+              System.out.print("cord Y "+cordY);
                 return this.cordY;
         }
 

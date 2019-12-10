@@ -12,6 +12,7 @@ import modele.player.IA;
 import modele.player.Player;
 import view.VueGrilleEnnemi;
 import view.VueGrilleJoueur;
+import view.VuePlateau;
 
 public class Jeu extends JFrame{
 	
@@ -31,6 +32,7 @@ public class Jeu extends JFrame{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
+                
 		setPreferredSize(new Dimension(screenWidth,screenHeight));
 		
 		
@@ -43,12 +45,9 @@ public class Jeu extends JFrame{
 		
 		Modele modele = new Modele(human, IA, plateau, plateau2);
 		
-		VueGrilleJoueur grillePlayer = new VueGrilleJoueur(modele);
-		VueGrilleEnnemi grilleEnnemi = new VueGrilleEnnemi(modele);
+		VuePlateau vueplateau = new VuePlateau(modele);
 		
-		this.add(grillePlayer, BorderLayout.WEST);
-		this.add(grilleEnnemi, BorderLayout.EAST);
-		
+                this.add(vueplateau);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) ;
 		this.pack();

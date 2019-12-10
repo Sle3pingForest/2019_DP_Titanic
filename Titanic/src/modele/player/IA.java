@@ -5,6 +5,7 @@ import java.util.Random;
 
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
+import modele.player.stategy.StategyRandom;
 import modele.player.stategy.Strategy;
 
 public class IA extends Player {
@@ -13,7 +14,9 @@ public class IA extends Player {
      
 	public IA(Plateau plateau, int munition, Collection<Boat> boats) {
 		super(plateau, munition, boats);
-		isIA = true;	}
+		isIA = true;	
+                
+        }
 
 	
 
@@ -24,11 +27,15 @@ public class IA extends Player {
 		return "IA";
 	}
 
-	@Override
+	
 	public void shoot(Plateau p) {
+                tireStrategy=new StategyRandom();
 		tireStrategy.shoot(p);
 		
 	}
+
+
+  
 	
 
 	

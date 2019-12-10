@@ -23,8 +23,8 @@ public class Modele extends Observable {
 		this.p2 = p2;
 		this.plateau = plateau;
 		this.plateau2 = plateau2;
-		this.p1.setPlateau(plateau); //Player
-		this.p2.setPlateau(plateau2); //IA
+		this.p1.setPlateau(plateau);
+		this.p2.setPlateau(plateau2);
 		plateau.setGrillOpponent(plateau2.getGrillPlayer());
 		plateau2.setGrillOpponent(plateau.getGrillPlayer());
 		settingBoatPositionP2();
@@ -103,14 +103,7 @@ public class Modele extends Observable {
 		this.p2 = p2;
 	}
 
-       public Plateau getPlateau()
-       {
-           return this.plateau;
-       }
-        public Plateau getPlateau1()
-       {
-           return this.plateau2;
-       }
+
 
 	
 }

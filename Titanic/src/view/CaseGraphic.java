@@ -19,7 +19,7 @@ public class CaseGraphic extends JButton{
 	public Color color = Color.white;
 	public boolean estTouche;
 	public BufferedImage imageCase;
-	public static int SIZE = 80;
+	public static int SIZE = 50;
 	public boolean isWater;
 	
 	public CaseGraphic(int x,int y, String path){

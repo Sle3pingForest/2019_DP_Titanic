@@ -13,28 +13,23 @@ import javax.swing.JPanel;
 
 import controlleur.ControllerPoserBoat;
 import controlleur.ControllerTirer;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import modele.Modele;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
-public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener{
+public class VueGrilleEnnemi extends JPanel   implements Observer{
 	protected CaseGraphic[][] cases;
 	protected CaseGraphic[] coordonneX, coordonneY;
 	protected Modele modele;
 	protected Player p;
-        private boolean myturn;
 	
 	public VueGrilleEnnemi(Modele modele) {
-                myturn =true;
 		this.modele = modele;
 		this.p = modele.getP1();
     	this.setPreferredSize(new Dimension(CaseGraphic.SIZE*11, CaseGraphic.SIZE*11));
 		initGrill();
         p.addObserver(this);
-       
-            this.addMouseListener(this);
+		this.addMouseListener(new ControllerTirer(modele, this));
 		
 	}
 	
@@ -97,12 +92,12 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
         	for (int j = 0; j < 10 ; j++ ) {
         		if(p.getPlateau().getGrillOpponent()[i+1][j+1].isTouched()) {
         			try {
-				       BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/Checkp.png"));
+						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/Checkp.png"));
 			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
 			        	
 			        	g.setColor(Color.blue);
 			        	g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
-			        	this.setMyturn(false);
+			        		
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -114,17 +109,13 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
 			        	
 			        	g.setColor(Color.blue);
 			        	g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
-			        	this.setMyturn(false);	
+			        		
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
         		}
-                      
         		
-        	
-        } 
-           // System.out.println("affichage !!!!!!");
-       // this.myturn=false;
+        	}
         } 
     
     }
@@ -135,62 +126,5 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
 
 		repaint();
 	}
-
-    public boolean isMyTurn() {
-        return this.myturn;
-    }
-
-    public void setMyturn(boolean b) {
-     this.myturn=b;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if(p.getReady()){
-        //if(this.isMyTurn()){
-      	int x = e.getX()/CaseGraphic.SIZE;
-		int y = e.getY()/CaseGraphic.SIZE;
-                System.out.println(x+" "+y);
-		if(this.modele.tire(x, y)) {
-               
-			System.out.println("touche trop fort");
-		}
-		else {
-                       //  this.vue.setMytruen(false);
-			System.out.println("loupe gros noob");
-		}
-        
-             
-                 System.out.println("je suis dans tirer random plateau");
-                 this.modele.getP2().shoot(modele.getP1().getPlateau());
-                 this.myturn=true;
-               //  this.setMyturn(true);
-       // }
-        } 
-        
-         
-               
-    }
-
-    @Override
-    public void mousePressed(MouseEvent me) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent me) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent me) {
-       
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
 
