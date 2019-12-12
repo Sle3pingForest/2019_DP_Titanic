@@ -36,7 +36,6 @@ public class CaseGraphic extends JButton{
 
 	public void settingImage(String path) {
 		try {
-			
 			imageCase = ImageIO.read(getClass().getResourceAsStream(path));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -11,11 +11,10 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import controlleur.ControllerPoserBoat;
-import controlleur.ControllerTirer;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import modele.Modele;
+import modele.State;
 import modele.gestionBoat.Plateau;
 import modele.player.Player;
 
@@ -32,7 +31,7 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
 		this.p = modele.getP1();
     	this.setPreferredSize(new Dimension(CaseGraphic.SIZE*11, CaseGraphic.SIZE*11));
 		initGrill();
-        p.addObserver(this);
+        modele.addObserver(this);
        
             this.addMouseListener(this);
 		
@@ -43,14 +42,14 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
 		this.coordonneX = new CaseGraphic[10];
 		this.coordonneY = new CaseGraphic[10];
     	for(int i = 0; i < Plateau.HIGHT-1  ; i ++) {
-			CaseGraphic cY = new CaseGraphic(0,(i+1)*CaseGraphic.SIZE,"images/para.jpg");
+			CaseGraphic cY = new CaseGraphic(0,(i+1)*CaseGraphic.SIZE, "/images/para.jpg");
 			this.coordonneY[i] = cY;
-			CaseGraphic cX = new CaseGraphic((i+1)*CaseGraphic.SIZE, 0,"images/para.jpg");
+			CaseGraphic cX = new CaseGraphic((i+1)*CaseGraphic.SIZE, 0, "/images/para.jpg");
 			this.coordonneX[i] = cX;
     	}
 		for(int i = 1 ; i < Plateau.WIDTH  ; i ++) {
 			for(int j = 1; j < Plateau.HIGHT; j++) {
-				CaseGraphic c1 = new CaseGraphic(i*CaseGraphic.SIZE, j*CaseGraphic.SIZE,"images/back.jpg");
+				CaseGraphic c1 = new CaseGraphic(i*CaseGraphic.SIZE, j*CaseGraphic.SIZE, "/images/back.jpg");
 				this.cases[i-1][j-1] = c1;
 				//il faut envoyé les coordonnes au case de plateau.
 			}
@@ -91,13 +90,13 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
 					}
         	    }
         	}
-        } */ //function a decommente si vous voulez voir le bateau d'ennemie
+        } */ //function a decommente si vous voulez voir les bateau d'ennemie
         
         for (int i = 0; i < 10 ; i++ )  {
         	for (int j = 0; j < 10 ; j++ ) {
         		if(p.getPlateau().getGrillOpponent()[i+1][j+1].isTouched()) {
         			try {
-				       BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/Checkp.png"));
+				       BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/images/Checkp.png"));
 			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
 			        	
 			        	g.setColor(Color.blue);
@@ -109,7 +108,7 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
         	    }
         		else if(p.getPlateau().getGrillOpponent()[i+1][j+1].isDejaTireIci()) {
         			try {
-						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("images/touche.png"));
+						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/images/touche.png"));
 			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
 			        	
 			        	g.setColor(Color.blue);
@@ -146,24 +145,10 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(p.getReady()){
-        //if(this.isMyTurn()){
+        if(this.modele.getState() == State.PLAY){
       	int x = e.getX()/CaseGraphic.SIZE;
 		int y = e.getY()/CaseGraphic.SIZE;
-		if(this.modele.tire(x, y)) {
-               
-			System.out.println("touche trop fort");
-		}
-		else {
-                       //  this.vue.setMytruen(false);
-			System.out.println("loupe gros noob");
-		}
-        
-             
-                 this.modele.getP2().shoot(modele.getP1().getPlateau());
-                 this.myturn=true;
-               //  this.setMyturn(true);
-       // }
+		modele.tire(x, y);
         } 
         
          

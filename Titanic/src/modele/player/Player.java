@@ -10,7 +10,7 @@ import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
 import modele.player.stategy.Strategy;
 
-public abstract class Player extends Observable{
+public abstract class Player {
 	private ArrayList<Boat> boats;
 	private int munition;
 	private Plateau plateau;
@@ -68,18 +68,12 @@ public abstract class Player extends Observable{
 					plateau.getGrillPlayer()[x][y-i].setY(y-i);
 				}
 			}
-
-	        setChanged();
-	        notifyObservers();
 			return true;
 		
 	}
 	
 	
 	public boolean tireTouched(int x, int y) {
-
-        setChanged();
-        notifyObservers();
 		return this.plateau.strike(x,y);
 	}
 
@@ -134,7 +128,5 @@ public abstract class Player extends Observable{
 	public void useMunition() {
 		this.munition -=1;
 	}
-	
-
 }
 

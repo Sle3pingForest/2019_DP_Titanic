@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import modele.Modele;
+import modele.State;
 import modele.gestionBoat.Boat;
 import modele.player.Player;
 import view.CaseGraphic;
@@ -28,10 +29,13 @@ public class ControllerPoserBoat implements MouseListener {
 	
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {	
+	public void mouseClicked(MouseEvent e) {
+		if (!(modele.getState() == State.SELECTCASETOPLACE))
+			return;
+
 			int x = e.getX()/CaseGraphic.SIZE;
 			int y = e.getY()/CaseGraphic.SIZE;
-			
+			System.out.println(x + " ! " + y);
 			if(x!= 0 && y != 0 ) {
 			ArrayList<Integer> listDirectionOK = modele.checkPosition(x, y, idBoat);
 			ArrayList<String> list = new ArrayList<String>() ;	
@@ -41,16 +45,16 @@ public class ControllerPoserBoat implements MouseListener {
 			String[] stockArr = new String[list.size()];
 			stockArr = list.toArray(stockArr);
 			if(idBoat < 5) {
-
-				String input = (String) JOptionPane.showInputDialog(null, "Choose now...", "Choice a direction", JOptionPane.QUESTION_MESSAGE, null,stockArr,null); 
-				
+				modele.setState(State.SELECTDIRECTION);
+				String input = (String) JOptionPane.showInputDialog(null, "Choose now...", "Choice a direction", JOptionPane.QUESTION_MESSAGE, null,stockArr,null);
+				modele.setState(State.SELECTCASETOPLACE);
 				boolean isok =modele.settingBoatPositionP1(x,y,input,idBoat);
 				if(isok) {
 					idBoat++;
 				}
 			}
-			if(idBoat == 4) {
-				modele.p1.isReady(true);
+			if(idBoat == 5) {
+				modele.setState(State.PLAY);
 			}
 		}
 	}

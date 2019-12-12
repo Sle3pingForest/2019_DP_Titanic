@@ -3,11 +3,8 @@ package modele;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
-import java.util.Scanner;
-
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
-import modele.player.IA;
 import modele.player.Player;
 
 public class Modele extends Observable {
@@ -16,20 +13,22 @@ public class Modele extends Observable {
 	public Player p2;
 	public Plateau plateau;
 	public Plateau plateau2;
+	private State state;
 	public static String[] DIRECTION = {"EAST", "SOUTH", "WEST", "NORTH"};
 	
 	public Modele(Player p1, Player p2, Plateau plateau, Plateau plateau2) {
+		super();
 		this.p1 = p1;
 		this.p2 = p2;
 		this.plateau = plateau;
 		this.plateau2 = plateau2;
 		this.p1.setPlateau(plateau); //Player
 		this.p2.setPlateau(plateau2); //IA
+		this.state = State.SELECTCASETOPLACE;
 		plateau.setGrillOpponent(plateau2.getGrillPlayer());
 		plateau2.setGrillOpponent(plateau.getGrillPlayer());
 		settingBoatPositionP2();
 	}
-	
 	
 	public ArrayList<Integer> checkPosition(int x , int y , int idBoat) {
 		return p1.validePosition(x, y, idBoat);
@@ -37,6 +36,8 @@ public class Modele extends Observable {
 	
 	public boolean settingBoatPositionP1(int x, int y, String direction, int idBoat) {
 			boolean isOk = false;
+			if (direction == null)
+				return  false;
 			if(direction.compareTo(DIRECTION[0]) == 0) {
 				isOk = p1.placeBoat(x,y,0 ,idBoat);
 			}
@@ -49,8 +50,7 @@ public class Modele extends Observable {
 			if(direction.compareTo(DIRECTION[3]) == 0) {
 				isOk = p1.placeBoat(x,y,3 ,idBoat);
 			}
-	        setChanged();
-	        notifyObservers();
+			update();
 			return isOk ;	
 	}
 	
@@ -70,21 +70,27 @@ public class Modele extends Observable {
 					isPlace = p2.placeBoat(x,y,directions.get(index),b.getId());
 				}
 			}
-	        setChanged();
-	        notifyObservers();
+			update();
 		}
 	}
 	
-	public boolean tire(int x, int y) {
-        if(p1.tireTouched(x, y)) {
-        	p2.getPlateau().getGrillPlayer()[x][y].setTouched(true);;
-        }
-        else {
-        	p2.getPlateau().getGrillPlayer()[x][y].setDejaTireIci(true);
-        }
+	public void tire(int x, int y) {
+		if (!p2.getPlateau().getGrillPlayer()[x][y].isDejaTireIci()){
+			if(p1.tireTouched(x, y)) {
+				p2.getPlateau().getGrillPlayer()[x][y].setTouched(true);
+				p2.getPlateau().getGrillPlayer()[x][y].setDejaTireIci(true);
+			}
+			else {
+				p2.getPlateau().getGrillPlayer()[x][y].setDejaTireIci(true);
+			}
+			p2.shoot(p1.getPlateau());
+			update();
+		}
+	}
+
+	private void update(){
 		setChanged();
-        notifyObservers();
-		return p1.tireTouched(x, y);
+		notifyObservers();
 	}
 
 	public Player getP1() {
@@ -103,11 +109,19 @@ public class Modele extends Observable {
 		this.p2 = p2;
 	}
 
+	public void setState(State state){
+		this.state = state;
+		update();
+	}
+
+	public State getState(){
+		return state;
+	}
        public Plateau getPlateau()
        {
            return this.plateau;
        }
-        public Plateau getPlateau1()
+		public Plateau getPlateau1()
        {
            return this.plateau2;
        }

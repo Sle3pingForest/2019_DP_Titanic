@@ -22,7 +22,7 @@ public class Case {
 		this.Touched = false; 
 		this.x = x;
 		this.y = y;
-                this.dejaTireIci = false; 
+		this.dejaTireIci = false;
 		
 	}
 

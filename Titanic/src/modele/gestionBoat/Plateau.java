@@ -171,4 +171,24 @@ public class Plateau {
 		this.listeBoatPlayer.add(sousMarins2);
 		this.listeBoatPlayer.add(torpilleur);
 	}
+
+	public String toString(){
+		StringBuilder sb = new StringBuilder("");
+		StringBuilder op = new StringBuilder("");
+		sb.append("Epoque : " + epoch);
+		sb.append("\nPlayer's grid : \n");
+		for(int i=0; i<WIDTH; i++) {
+			sb.append("[");
+			op.append("[");
+			for(int j=0; j<HIGHT; j++) {
+				sb.append("[").append(grillPlayer[i][j]).append("] ");
+				op.append("[").append(grillOpponent[i][j]).append("] ");
+			}
+			sb.append("]\n");
+			op.append("]\n");
+		}
+		sb.append("\n Enemy's grid : \n");
+		sb.append(op.toString());
+		return sb.toString();
+	}
 }

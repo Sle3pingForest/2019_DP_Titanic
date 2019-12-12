@@ -29,7 +29,7 @@ public class IA extends Player {
 
 	
 	public void shoot(Plateau p) {
-                tireStrategy=new StategyRandom();
+		tireStrategy=new StategyRandom();
 		tireStrategy.shoot(p);
 		
 	}
