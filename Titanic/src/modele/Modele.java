@@ -5,6 +5,9 @@ import java.util.Observable;
 import java.util.Random;
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
+import modele.options.Options;
+import modele.player.Human;
+import modele.player.IA;
 import modele.player.Player;
 
 public class Modele extends Observable {
@@ -14,12 +17,22 @@ public class Modele extends Observable {
 	public Plateau plateau;
 	public Plateau plateau2;
 	private State state;
+	private String epoque;
 	public static String[] DIRECTION = {"EAST", "SOUTH", "WEST", "NORTH"};
 	
-	public Modele(Player p1, Player p2, Plateau plateau, Plateau plateau2) {
+	public Modele(Options options) {
 		super();
-		this.p1 = p1;
-		this.p2 = p2;
+		this.epoque = options.getEpoque();
+		Plateau plateau = new Plateau(epoque);
+		Plateau plateau2 = new Plateau(epoque);
+		this.p1 = new Human(plateau,50,plateau.getListeBoat());
+		this.p2 = new IA(plateau2, 50, plateau.getListeBoat(), options.getStrategy());
+
+		init(plateau, plateau2);
+
+	}
+
+	private void init(Plateau plateau, Plateau plateau2) {
 		this.plateau = plateau;
 		this.plateau2 = plateau2;
 		this.p1.setPlateau(plateau); //Player
@@ -29,7 +42,7 @@ public class Modele extends Observable {
 		plateau2.setGrillOpponent(plateau.getGrillPlayer());
 		settingBoatPositionP2();
 	}
-	
+
 	public ArrayList<Integer> checkPosition(int x , int y , int idBoat) {
 		return p1.validePosition(x, y, idBoat);
 	}
@@ -93,6 +106,13 @@ public class Modele extends Observable {
 		notifyObservers();
 	}
 
+	public void newGame(){
+		Plateau pp1 = new Plateau(epoque);
+		Plateau pp2 = new Plateau(epoque);
+		init(pp1, pp2);
+		update();
+	}
+
 	public Player getP1() {
 		return p1;
 	}
@@ -126,5 +146,8 @@ public class Modele extends Observable {
            return this.plateau2;
        }
 
-	
+	public void setStrategy(String strategy) {
+		IA player = (IA)p2;
+		player.setStrategy(strategy);
+	}
 }

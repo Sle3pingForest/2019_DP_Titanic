@@ -9,23 +9,27 @@ public class Plateau {
 	public static final String XVI ="XVI";
 	public static final String XX = "XX";
 	private String epoch;
+	private int idBoat;
 	protected Case[][] grillOpponent;
 	protected Case[][] grillPlayer ;
 	protected ArrayList<Boat> listeBoatPlayer;
 
 	public Plateau(String epoch) {
+		idBoat = 0;
 		this.grillPlayer = new Case[WIDTH][HIGHT];
 		this.grillOpponent = new Case[WIDTH][HIGHT];
-		initializerPlateau();
-		this.listeBoatPlayer = new ArrayList<Boat>();
-		settingBoat(epoch);
 		this.epoch = epoch;
+		this.listeBoatPlayer = new ArrayList<Boat>();
+		initializerPlateau();
+		settingBoat();
 
 	}
 	//check if can place the boat with no collison on other , and the boat stay on plateau on out range
-	public ArrayList<Integer> boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) { 
+	public ArrayList<Integer> boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) {
 		ArrayList<Integer> listeDirection = new ArrayList<Integer>();
 		boolean empty=true;
+		if(idboat > 4)
+			return listeDirection;
 		if(isEmpty(grille,x,y) && (x + listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
 			int i = 0;
 			while(i < listeBoatPlayer.get(idboat).getSize() && empty) {
@@ -147,9 +151,8 @@ public class Plateau {
 	}
 	
 	//function who bluid 5 boat at position 0 0
-	public void settingBoat(String epoch) {
+	public void settingBoat() {
 		Boat portAvion,  croiseur, sousMarins,  sousMarins2,  torpilleur;
-		this.epoch = epoch;
 		if(epoch.compareTo(XVI) == 0) {
 			portAvion = new BoatXVI("Porte Avion",0,0, 0, 5, -1);
 			croiseur = new BoatXVI("Croiseur", 1,0,0, 4, -1);
@@ -190,5 +193,16 @@ public class Plateau {
 		sb.append("\n Enemy's grid : \n");
 		sb.append(op.toString());
 		return sb.toString();
+	}
+
+	public void resetIdBoat(){
+		idBoat = 0;
+	}
+
+	public int getIdBoat() {
+		return idBoat;
+	}
+	public void increaseIdBoat(int x){
+		idBoat = idBoat + x;
 	}
 }

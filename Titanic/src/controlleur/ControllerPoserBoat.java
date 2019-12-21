@@ -20,7 +20,7 @@ public class ControllerPoserBoat implements MouseListener {
 
 	public Modele modele;
 	public VueGrilleJoueur vue;
-	public static int idBoat = 0;
+	private int idBoat;
 	
 	public ControllerPoserBoat(Modele modele, VueGrilleJoueur vuePlayer){
 		this.modele = modele;
@@ -30,6 +30,7 @@ public class ControllerPoserBoat implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		idBoat = modele.getP1().getPlateau().getIdBoat();
 		if (!(modele.getState() == State.SELECTCASETOPLACE))
 			return;
 
@@ -50,7 +51,7 @@ public class ControllerPoserBoat implements MouseListener {
 				modele.setState(State.SELECTCASETOPLACE);
 				boolean isok =modele.settingBoatPositionP1(x,y,input,idBoat);
 				if(isok) {
-					idBoat++;
+					modele.getP1().getPlateau().increaseIdBoat(1);
 				}
 			}
 			if(idBoat == 5) {

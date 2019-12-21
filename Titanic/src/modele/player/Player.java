@@ -128,5 +128,6 @@ public abstract class Player {
 	public void useMunition() {
 		this.munition -=1;
 	}
+
 }
 

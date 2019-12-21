@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import modele.Modele;
 import modele.player.Player;
-import view.VueGrilleJoueur;
 import view.VuePlateau;
 
 public class ControllerStartGame implements ActionListener{
