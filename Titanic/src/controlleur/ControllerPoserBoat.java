@@ -53,9 +53,8 @@ public class ControllerPoserBoat implements MouseListener {
 				if(isok) {
 					modele.getP1().getPlateau().increaseIdBoat(1);
 				}
-			}
-			if(idBoat == 5) {
-				modele.setState(State.PLAY);
+				if (idBoat + 1 > 4)
+					modele.setState(State.PLAY);
 			}
 		}
 	}

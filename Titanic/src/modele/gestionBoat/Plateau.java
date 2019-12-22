@@ -28,8 +28,10 @@ public class Plateau {
 	public ArrayList<Integer> boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) {
 		ArrayList<Integer> listeDirection = new ArrayList<Integer>();
 		boolean empty=true;
-		if(idboat > 4)
+		if(idboat > 4) {
 			return listeDirection;
+
+		}
 		if(isEmpty(grille,x,y) && (x + listeBoatPlayer.get(idboat).getSize() <= WIDTH) ){
 			int i = 0;
 			while(i < listeBoatPlayer.get(idboat).getSize() && empty) {
