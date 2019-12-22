@@ -38,6 +38,8 @@ public abstract class Player {
 					this.plateau.setGrilleValue(boats.get(idBoat).getPosX() + i, boats.get(idBoat).getPosY(), idBoat);
 					plateau.getGrillPlayer()[x+i][y].setX(x+i);
 					plateau.getGrillPlayer()[x][y].setY(y);
+                                         this.plateau.getGrillPlayer()[x+i][y].setId(idBoat);
+                                          this.plateau.getGrillPlayer()[x+i][y].setWater(false);
 					boats.get(idBoat).setDirection(direction);
 				}
 				
@@ -47,6 +49,8 @@ public abstract class Player {
 					this.plateau.setGrilleValue(boats.get(idBoat).getPosX(), boats.get(idBoat).getPosY()+ i,idBoat);
 					plateau.getGrillPlayer()[x][y].setX(x);
 					plateau.getGrillPlayer()[x][y+i].setY(y+i);
+                                        this.plateau.getGrillPlayer()[x][y+i].setId(idBoat);
+                                         this.plateau.getGrillPlayer()[x][y+i].setWater(false);
 					boats.get(idBoat).setDirection(direction);
 				}
 			}
@@ -57,6 +61,8 @@ public abstract class Player {
 					this.plateau.setGrilleValue(boats.get(idBoat).getPosX() - i, boats.get(idBoat).getPosY(), idBoat);
 					plateau.getGrillPlayer()[x-i][y].setX(x-i);
 					plateau.getGrillPlayer()[x][y].setY(y);
+                                         this.plateau.getGrillPlayer()[x-i][y].setId(idBoat);
+                                          this.plateau.getGrillPlayer()[x-i][y].setWater(false);
 					boats.get(idBoat).setDirection(direction);
 				}
 			}
@@ -66,6 +72,8 @@ public abstract class Player {
 					this.plateau.setGrilleValue(boats.get(idBoat).getPosX(), boats.get(idBoat).getPosY()-i,idBoat);
 					plateau.getGrillPlayer()[x][y].setX(x);
 					plateau.getGrillPlayer()[x][y-i].setY(y-i);
+                                        this.plateau.getGrillPlayer()[x][y-i].setId(idBoat);
+                                         this.plateau.getGrillPlayer()[x][y-i].setWater(false);
 				}
 			}
 			return true;

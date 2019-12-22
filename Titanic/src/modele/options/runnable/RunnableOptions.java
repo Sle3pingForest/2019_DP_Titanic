@@ -17,7 +17,7 @@ public class RunnableOptions implements Runnable {
         frame.add(new VueOptions(options));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setSize(900,450);
+        frame.setSize(400,400);
     }
 
     @Override

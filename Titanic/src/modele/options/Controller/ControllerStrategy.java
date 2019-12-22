@@ -16,7 +16,7 @@ public class ControllerStrategy implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JRadioButton button = (JRadioButton) e.getSource();
+        JButton button = (JButton) e.getSource();
         String text = button.getActionCommand();
         options.setStrategy(text);
     }

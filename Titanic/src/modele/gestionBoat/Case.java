@@ -80,6 +80,7 @@ public class Case {
 	public void setY(int y) {
 		this.y = y;
 	}
+       
 
 	public int getId() {
 		return id;
@@ -113,7 +114,7 @@ public class Case {
 
 	public void setDejaTireIci(boolean dejaTireIci) { 
 		this.dejaTireIci = dejaTireIci; 
-
+    
 
 	} 
 }
