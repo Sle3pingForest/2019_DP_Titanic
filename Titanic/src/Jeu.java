@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import dao.AbstractDAOFactory;
 import modele.Modele;
 import modele.gestionBoat.Plateau;
 import modele.options.Options;
@@ -42,7 +43,6 @@ public class Jeu extends JFrame{
 	public Modele getModele() {
 		return modele;
 	}
-
 
 	public static void main(String[] args) {
 		Options options = new Options();

@@ -19,9 +19,8 @@ public class TxTDAO implements InterfaceDAO{
     }
 
     @Override
-    public Modele load() {
+    public void load(Modele mod) {
         System.out.println("Chargement à implémenter");
-        return null;
     }
 
     public static TxTDAO getInstance(){

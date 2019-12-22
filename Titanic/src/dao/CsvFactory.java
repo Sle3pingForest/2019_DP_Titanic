@@ -1,13 +1,13 @@
 package dao;
 
-public class TxTFactory extends AbstractDAOFactory {
+public class CsvFactory extends AbstractDAOFactory {
 
     public TxTDAO getClassTxtDAO() {
-        return TxTDAO.getInstance();
+        return null;
     }
 
     public CsvDAO getClassCsvDAO() {
-        return null;
+        return CsvDAO.getInstance();
     }
 
     @Override

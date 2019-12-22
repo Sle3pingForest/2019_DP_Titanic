@@ -17,11 +17,11 @@ public class ControllerSaveGame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        int type = AbstractDAOFactory.TXT;
+        int type = AbstractDAOFactory.CSV;
 
         AbstractDAOFactory dao = AbstractDAOFactory.getAbstractDAOFactory(type);
         if (dao != null) {
-            dao.getClassTxtDAO().save(mod);
+            dao.getInterfaceDAO().save(mod);
         } else {
             System.out.println("Sauvegarde impossible");
         }

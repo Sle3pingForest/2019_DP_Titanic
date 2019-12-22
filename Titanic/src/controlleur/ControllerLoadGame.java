@@ -15,11 +15,11 @@ public class ControllerLoadGame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        int type = AbstractDAOFactory.TXT;
+        int type = AbstractDAOFactory.CSV;
 
         AbstractDAOFactory dao = AbstractDAOFactory.getAbstractDAOFactory(type);
         if (dao != null) {
-           dao.getClassTxtDAO().load();
+           dao.getInterfaceDAO().load(mod);
         } else {
             System.out.println("chargement impossible");
         }
