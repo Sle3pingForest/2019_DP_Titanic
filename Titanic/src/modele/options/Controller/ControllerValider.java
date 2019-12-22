@@ -14,6 +14,6 @@ public class ControllerValider implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        options.setDisplayed(false);
+        options.valider();
     }
 }

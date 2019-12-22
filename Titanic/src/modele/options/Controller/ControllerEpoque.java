@@ -15,7 +15,7 @@ public class ControllerEpoque implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
+        JRadioButton button = (JRadioButton) e.getSource();
         String text = button.getActionCommand();
         options.setEpoque(text);
     }
