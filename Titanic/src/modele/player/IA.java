@@ -8,35 +8,28 @@ import modele.player.strategy.StrategyRandom;
 import modele.player.strategy.Strategy;
 
 public class IA extends Player {
-     Strategy tireStrategy;
-     
-	public IA(Plateau plateau, int munition, Collection<Boat> boats, Strategy s) {
-		super(plateau, munition, boats);
-		isIA = true;
-		tireStrategy=new StrategyRandom();
-	}
 
-	public void setStrategy(Strategy s){
-		tireStrategy = s;
-	}
+    Strategy tireStrategy;
 
-	
-	@Override
-	public String playerType() {
-		// TODO Auto-generated method stub
-		return "IA";
-	}
+    public IA(Plateau plateau, int munition, Collection<Boat> boats, Strategy s) {
+        super(plateau, munition, boats);
+        isIA = true;
+        tireStrategy = new StrategyRandom();
+    }
 
-	
-	public void shoot(Plateau p) {
-		tireStrategy.shoot(p);
-		
-	}
+    public void setStrategy(Strategy s) {
+        tireStrategy = s;
+    }
 
+    @Override
+    public String playerType() {
+        // TODO Auto-generated method stub
+        return "IA";
+    }
 
-  
-	
+    public void shoot(Plateau p) {
+        tireStrategy.shoot(p);
 
-	
-	
+    }
+
 }
