@@ -24,6 +24,14 @@ public class Plateau {
 		settingBoat();
 
 	}
+
+	public Plateau(Case[][] player, Case[][] opponent, String epoque, ArrayList<Boat> boat){
+		this.grillPlayer = player;
+		this.grillOpponent = opponent;
+		this.epoch = epoque;
+		this.listeBoatPlayer = boat;
+	}
+
 	//check if can place the boat with no collison on other , and the boat stay on plateau on out range
 	public ArrayList<Integer> boatPositionEmpty(Case[][] grille,int x , int y,int  idboat) {
 		ArrayList<Integer> listeDirection = new ArrayList<Integer>();
@@ -84,6 +92,8 @@ public class Plateau {
 		if(grillOpponent[x][y].getId() != -1) {
 			grillOpponent[x][y].setTouched(true);
 		}
+		else
+			grillOpponent[x][y].setDejaTireIci(true);
 		return grillOpponent[x][y].getId() != -1;
 	}
 	
@@ -206,5 +216,9 @@ public class Plateau {
 	}
 	public void increaseIdBoat(int x){
 		idBoat = idBoat + x;
+	}
+
+	public void setIdBoat(int idBoat) {
+		this.idBoat = idBoat;
 	}
 }

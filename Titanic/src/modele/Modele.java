@@ -150,4 +150,8 @@ public class Modele extends Observable {
 		IA player = (IA)p2;
 		player.setStrategy(strategy);
 	}
+
+	public void finChargement() {
+		update();
+	}
 }

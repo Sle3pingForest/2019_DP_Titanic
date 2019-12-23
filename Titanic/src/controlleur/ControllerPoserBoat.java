@@ -36,7 +36,6 @@ public class ControllerPoserBoat implements MouseListener {
 
 			int x = e.getX()/CaseGraphic.SIZE;
 			int y = e.getY()/CaseGraphic.SIZE;
-			System.out.println(x + " ! " + y);
 			if(x!= 0 && y != 0 ) {
 			ArrayList<Integer> listDirectionOK = modele.checkPosition(x, y, idBoat);
 			ArrayList<String> list = new ArrayList<String>() ;	

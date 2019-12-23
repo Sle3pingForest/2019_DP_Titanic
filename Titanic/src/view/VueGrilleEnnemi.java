@@ -110,22 +110,22 @@ public class VueGrilleEnnemi extends JPanel   implements Observer, MouseListener
         			try {
 						BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/images/touche.png"));
 			        	g.drawImage(image,cases[i][j].getX(), cases[i][j].getY(),CaseGraphic.SIZE,CaseGraphic.SIZE,this);
-			        	
+
 			        	g.setColor(Color.blue);
 			        	g.drawRect(cases[i][j].getX(), cases[i][j].getY(), CaseGraphic.SIZE,CaseGraphic.SIZE);
-			        	this.setMyturn(false);	
+			        	this.setMyturn(false);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
         		}
-                      
-        		
-        	
-        } 
+
+
+
+        }
            // System.out.println("affichage !!!!!!");
        // this.myturn=false;
-        } 
-    
+        }
+
     }
 
 	@Override

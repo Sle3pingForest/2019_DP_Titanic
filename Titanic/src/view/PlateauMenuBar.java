@@ -54,7 +54,7 @@ public class PlateauMenuBar extends JMenuBar {
         save.addActionListener(new ControllerSaveGame(mod));
 
         JMenuItem load = new JMenuItem("Charger");
-        save.addActionListener(new ControllerLoadGame(mod));
+        load.addActionListener(new ControllerLoadGame(mod));
         file.add(newGame);
         file.add(save);
         file.add(load);

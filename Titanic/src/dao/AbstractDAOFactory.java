@@ -5,7 +5,7 @@ public abstract class AbstractDAOFactory {
 
     public final static int CSV = 2;
 
-    public abstract InterfaceDAO getInterfaceDAO();
+    public abstract InterfaceDAO getDAO();
 
     public static AbstractDAOFactory getAbstractDAOFactory(int type) {
 

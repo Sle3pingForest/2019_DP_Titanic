@@ -19,7 +19,8 @@ public class ControllerLoadGame implements ActionListener{
 
         AbstractDAOFactory dao = AbstractDAOFactory.getAbstractDAOFactory(type);
         if (dao != null) {
-           dao.getInterfaceDAO().load(mod);
+            System.out.println("Chargement en cours...");
+           dao.getDAO().load(mod);
         } else {
             System.out.println("chargement impossible");
         }

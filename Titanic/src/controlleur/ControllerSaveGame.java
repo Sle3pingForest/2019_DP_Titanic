@@ -21,7 +21,7 @@ public class ControllerSaveGame implements ActionListener {
 
         AbstractDAOFactory dao = AbstractDAOFactory.getAbstractDAOFactory(type);
         if (dao != null) {
-            dao.getInterfaceDAO().save(mod);
+            dao.getDAO().save(mod);
         } else {
             System.out.println("Sauvegarde impossible");
         }
