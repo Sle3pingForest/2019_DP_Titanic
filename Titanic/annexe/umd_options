@@ -1,0 +1,27 @@
+@startuml
+hide empty methods
+hide empty fields
+
+class Options{
++setStrategie(s : String) : void
++setEpoque(s : String) : void
++getEpoque() : String
++getStrategy() : Strategy
+}
+
+class VueOptions
+
+class RunnableOptions{
+  +run() : void
+}
+
+Observable <--- Options
+Observer <... VueOptions
+Observable . Observer : know
+Runnable <... RunnableOptions
+RunnableOptions - "1" Options
+
+VueOptions --- ControllerEpoque
+VueOptions --- ControllerStrategy
+VueOptions --- ControllerValider
+@enduml

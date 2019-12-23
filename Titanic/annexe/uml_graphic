@@ -1,0 +1,29 @@
+@startuml
+hide empty fields
+hide empty methods
+
+ControllerLoadGame ..> ActionListener
+ControllerNewGame ..> ActionListener
+ControllerPoserBoat ..> ActionListener
+ControllerSaveGame ..> ActionListener
+ControllerStartGame ..> ActionListener
+ControllerTirer ..> ActionListener
+
+Observer <... VuePlateau
+Observer <... VueGrilleJoueur
+Observer <... VueGrilleEnnemi
+Observer <... VueBoat
+
+
+VuePlateau --> JPanel
+VueGrilleJoueur --> JPanel
+VueGrilleEnnemi--> JPanel
+VueBoat --> JPanel
+
+ActionListener "*" --- Observer
+ActionListener "*" --- PlateauMenuBar
+JMenuBar <-- PlateauMenuBar
+
+Observable <-- Modele
+Jframe <--Jeu
+@enduml

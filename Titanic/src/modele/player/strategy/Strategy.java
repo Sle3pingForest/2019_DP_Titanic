@@ -1,8 +1,8 @@
-package modele.player.stategy;
+package modele.player.strategy;
 
 import modele.gestionBoat.Plateau;
 
-public abstract class Strategy {
+public abstract interface Strategy {
 
 	public abstract void shoot(Plateau p);
 }

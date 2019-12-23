@@ -1,10 +1,6 @@
 package view;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import controlleur.ControllerStartGame;
-import controlleur.ControllerTirer;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
@@ -12,7 +8,6 @@ import javax.swing.*;
 import modele.Modele;
 import modele.State;
 import modele.player.Player;
-import modele.player.stategy.StategyRandom;
 
 
 public class VuePlateau extends JPanel implements Observer{

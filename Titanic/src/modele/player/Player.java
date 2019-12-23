@@ -2,13 +2,10 @@ package modele.player;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Observable;
-import java.util.Scanner;
 
 
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
-import modele.player.stategy.Strategy;
 
 public abstract class Player {
 	private ArrayList<Boat> boats;

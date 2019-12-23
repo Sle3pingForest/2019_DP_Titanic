@@ -4,6 +4,8 @@ import controlleur.ControllerLoadGame;
 import controlleur.ControllerNewGame;
 import controlleur.ControllerSaveGame;
 import modele.Modele;
+import modele.player.strategy.StrategyCroix;
+import modele.player.strategy.StrategyRandom;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -29,14 +31,14 @@ public class PlateauMenuBar extends JMenuBar {
         strategieAlea.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                mod.setStrategy("Aleatoire");
+                mod.setStrategy(new StrategyRandom());
             }
         });
         JMenuItem strategyCroix = new JMenuItem("Croix");
         strategyCroix.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                mod.setStrategy("Croix");
+                mod.setStrategy(new StrategyCroix());
             }
         });
         changerStrategy.add(strategyCroix);

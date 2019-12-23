@@ -1,10 +1,10 @@
-package modele.player.stategy;
+package modele.player.strategy;
 
 import modele.gestionBoat.Case;
 import modele.gestionBoat.Plateau;
 
 
-public class StategyCroix extends Strategy {
+public class StrategyCroix implements Strategy {
         private int x ,y;
         private Plateau plateau;
         private Case[][] grillOpponent;

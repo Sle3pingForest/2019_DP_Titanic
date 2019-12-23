@@ -1,32 +1,23 @@
 package modele.player;
 
 import java.util.Collection;
-import java.util.Random;
 
 import modele.gestionBoat.Boat;
 import modele.gestionBoat.Plateau;
-import modele.player.stategy.StategyCroix;
-import modele.player.stategy.StategyRandom;
-import modele.player.stategy.Strategy;
+import modele.player.strategy.StrategyRandom;
+import modele.player.strategy.Strategy;
 
 public class IA extends Player {
      Strategy tireStrategy;
-     Strategy croix;
-     Strategy random;
      
 	public IA(Plateau plateau, int munition, Collection<Boat> boats, Strategy s) {
 		super(plateau, munition, boats);
 		isIA = true;
-		croix = new StategyCroix();
-		random = new StategyRandom();
-		tireStrategy=new StategyRandom();
+		tireStrategy=new StrategyRandom();
 	}
 
-	public void setStrategy(String s){
-		if (s.equals("Croix"))
-			tireStrategy = croix;
-		else
-			tireStrategy = random;
+	public void setStrategy(Strategy s){
+		tireStrategy = s;
 	}
 
 	

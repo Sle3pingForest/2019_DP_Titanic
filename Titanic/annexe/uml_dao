@@ -1,0 +1,17 @@
+@startuml
+interface InterfaceDAO {
+    +load(Modele m) : void
+    +save(Modele m) : void
+}
+
+abstract class AbstractDAOFactory{
+ + abstract getDAO() : InterfaceDAO
+ + getAbstractDAOFactory() : AbstractDAOFactory
+}
+
+
+
+AbstractDAOFactory <-- CSVFactory
+CSVFactory --- CsvDAO : create
+CsvDAO ...> InterfaceDAO
+@enduml

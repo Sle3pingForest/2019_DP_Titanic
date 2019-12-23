@@ -9,6 +9,7 @@ import modele.options.Options;
 import modele.player.Human;
 import modele.player.IA;
 import modele.player.Player;
+import modele.player.strategy.Strategy;
 
 public class Modele extends Observable {
 	
@@ -146,7 +147,7 @@ public class Modele extends Observable {
            return this.plateau2;
        }
 
-	public void setStrategy(String strategy) {
+	public void setStrategy(Strategy strategy) {
 		IA player = (IA)p2;
 		player.setStrategy(strategy);
 	}

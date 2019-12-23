@@ -1,10 +1,10 @@
-package modele.player.stategy;
+package modele.player.strategy;
 
 import java.util.Random;
 import modele.gestionBoat.Plateau;
 import modele.gestionBoat.*;
 
-public class StategyRandom extends Strategy {
+public class StrategyRandom implements Strategy {
     private Plateau plateau;
      private String epoche;
      private static int DEGAT ;

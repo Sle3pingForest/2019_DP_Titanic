@@ -1,8 +1,8 @@
 package modele.options;
 
-import modele.player.stategy.StategyCroix;
-import modele.player.stategy.StategyRandom;
-import modele.player.stategy.Strategy;
+import modele.player.strategy.StrategyCroix;
+import modele.player.strategy.StrategyRandom;
+import modele.player.strategy.Strategy;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -23,8 +23,8 @@ public class Options extends Observable {
     public final static int NB_STRAT = 2;
 
     public Options(){
-        random = new StategyRandom();
-        croix = new StategyCroix();
+        random = new StrategyRandom();
+        croix = new StrategyCroix();
         tabEpoque = null;
         tabStrat = null;
         makeTabEpoque();

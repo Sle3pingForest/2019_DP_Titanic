@@ -1,0 +1,37 @@
+@startuml
+hide empty fields
+hide empty methods
+
+enum State
+abstract class Boat
+class IA{
++setStrategy(s : Strategy)
+}
+
+interface Strategy
+
+Joueur <-- Human
+Joueur <-- IA
+IA  -- "1" Strategy
+Strategy <.. StrategyCroix
+Strategy <.. StrategyRandom
+
+Modele - "2" Joueur
+Modele -- "1" State
+Plateau "2" --- Modele
+Case "*" - Plateau
+Plateau "1" -- Joueur
+Plateau - "*" Boat
+
+BoatXVI ---> Boat
+BoatXX ---> Boat
+
+abstract class AbstractEpoqueFactory{
++abstractbuildShip(String, int, int, int, int , int) : Boat
+}
+
+
+AbstractEpoqueFactory <-- EpoqueXVI
+AbstractEpoqueFactory <-- EpoqueXX
+Boat . AbstractEpoqueFactory : build
+@enduml
