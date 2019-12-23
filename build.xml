@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="2019_dp_titanic" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/charsets.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/cldrdata.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/dnsns.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/icedtea-sound.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/jaccess.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/java-atk-wrapper.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/localedata.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/nashorn.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunec.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunjce_provider.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunpkcs11.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/zipfs.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/jce.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/jsse.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/management-agent.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/resources.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module Titanic -->
+  
+  <dirname property="module.titanic.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.titanic" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.titanic" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.titanic" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.titanic" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="titanic.output.dir" value="${module.titanic.basedir}/bin"/>
+  <property name="titanic.testoutput.dir" value="${module.titanic.basedir}/bin"/>
+  
+  <path id="titanic.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="titanic.module.production.classpath">
+    <path refid="${module.jdk.classpath.titanic}"/>
+  </path>
+  
+  <path id="titanic.runtime.production.module.classpath">
+    <pathelement location="${titanic.output.dir}"/>
+  </path>
+  
+  <path id="titanic.module.classpath">
+    <pathelement location="${titanic.output.dir}"/>
+    <path refid="${module.jdk.classpath.titanic}"/>
+  </path>
+  
+  <path id="titanic.runtime.module.classpath">
+    <pathelement location="${titanic.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.titanic">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.titanic">
+    <patternset refid="excluded.from.module.titanic"/>
+  </patternset>
+  
+  <path id="titanic.module.sourcepath">
+    <dirset dir="${module.titanic.basedir}/Titanic">
+      <include name="src"/>
+      <include name="rsc"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.titanic" depends="compile.module.titanic.production,compile.module.titanic.tests" description="Compile module Titanic"/>
+  
+  <target name="compile.module.titanic.production" description="Compile module Titanic; production classes">
+    <mkdir dir="${titanic.output.dir}"/>
+    <javac destdir="${titanic.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.titanic}/javac">
+      <compilerarg line="${compiler.args.titanic}"/>
+      <bootclasspath refid="titanic.module.bootclasspath"/>
+      <classpath refid="titanic.module.production.classpath"/>
+      <src refid="titanic.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.titanic"/>
+    </javac>
+    
+    <copy todir="${titanic.output.dir}">
+      <fileset dir="${module.titanic.basedir}/Titanic/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.titanic.basedir}/Titanic/rsc">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.titanic.tests" depends="compile.module.titanic.production" description="compile module Titanic; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.titanic" description="cleanup module">
+    <delete dir="${titanic.output.dir}"/>
+    <delete dir="${titanic.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.titanic" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.titanic" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
